@@ -82,7 +82,7 @@ data = {}
 data["hash"] = '0x7f63f9caca226af6ac1e87fee18b638da04cfbb980f202e8f17855a6d4617a69'
 var dataString = JSON.stringify(data);
 $.ajax({
-    url: "https://ethereum.search.secondstate.io/api/search_via_abi",
+    url: "base_url/api/search_via_abi",
     type: "POST",
     data: dataString,
     dataType: "json",
@@ -109,7 +109,7 @@ data = {}
 data["keywords"] = '["cybermiles", "cmt"]'
 var dataString = JSON.stringify(data);
 $.ajax({
-    url: "https://ethereum.search.secondstate.io/api/search_via_keywords",
+    url: "base_url/api/search_via_keywords",
     type: "POST",
     data: dataString,
     dataType: "json",
@@ -136,7 +136,7 @@ data["hash"] = '0x7f63f9caca226af6ac1e87fee18b638da04cfbb980f202e8f17855a6d4617a
 data["keywords"] = '["cybermiles", "cmt"]'
 var dataString = JSON.stringify(data);
 $.ajax({
-    url: "https://ethereum.search.secondstate.io/api/search_via_keywords_and_abi",
+    url: "base_url/api/search_via_keywords_and_abi",
     type: "POST",
     data: dataString,
     dataType: "json",
