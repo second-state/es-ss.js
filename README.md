@@ -34,3 +34,29 @@ $.ajax({
 });
 ```
 If the above code succeeds it is because there is a legitimate smart contract instance (which adheres to the ABI) at the transaction hash provided. If not, it will fail.
+
+# Generating the canonical deterministic hash of an ABI
+
+```javascript
+abi = '[{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"}]'
+_data = {}
+_data["abi"] = abi
+var _dataString = JSON.stringify(_data);
+$.ajax({
+    url: "https://ethereum.search.secondstate.io/api/sha_an_abi",
+    type: "POST",
+    data: _dataString,
+    dataType: "json",
+    contentType: "application/json",
+    success: function(response) {
+        console.log(response);
+    },
+    error: function(xhr) {
+        console.log("Hashing of ABI failed");
+    }
+});
+```
+This code will return the following JSON data
+```javascript
+{abiSha3: "0x7f63f9caca226af6ac1e87fee18b638da04cfbb980f202e8f17855a6d4617a69"}
+```
