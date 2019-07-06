@@ -30,3 +30,22 @@ Call the function
 esss.submitAbi(abi, txHash)
 ```
 
+### Sha an ABI
+This produces a canonical deterministic Sha3 hash of an ABI. The hash (which is returned from this function) can be used to filter searches as well as customise frontend displays.
+
+```javascript
+var abi = '[valid abi goes here]'
+```
+
+Call the function
+```javascript
+esss.shaAbi(abi)
+```
+
+Returns JSON with hash like this
+```javascript
+{
+  "abiSha3": "0x4722ca26325a45bfad1538b8a73d341548cfa007765f81071e3b0f966adcedff"
+}
+```
+
