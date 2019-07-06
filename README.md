@@ -105,4 +105,22 @@ esss.searchUsingKeywords(data)
 
 Returns data in the same format as shown above.
 
+### Search using Keywords and ABI
+This returns any and all items in the index which contain the ABI hash or any of the words in the list of keywords.
+
+Prepare the list as JSON
+```javascript
+data = {}
+data["keywords"] = ["cmt", "CyberMiles", "token"]
+```
+Call the function by passing in the Sha3 of the ABI and the list of keywords.
+
+```javascript
+esss.searchUsingKeywordsAndAbi("0x2b5710e2cf7eb7c9bd50bfac8e89070bdfed6eb58f0c26915f034595e5443286", data)
+```
+
+Returns data in the same format as shown above.
+
+
+
 
