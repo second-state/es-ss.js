@@ -33,7 +33,28 @@ class ESSS {
     }
 
     shaAbi(_abi) {
-
+        // request initialisation
+        var xhr = new XMLHttpRequest();
+        var url = this.searchEngineBaseUrl + "/api/sha_an_abi";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        //data
+        var data = {};
+        data["abi"] = _abi;
+        //execution
+        xhr.onload = function(e) {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                } else {
+                    console.error(xhr.statusText);
+                }
+            }
+        };
+        xhr.onerror = function(e) {
+            console.error(xhr.statusText);
+        };
+        xhr.send(JSON.stringify(data));
     }
 
     searchUsingAbi(_abiHash) {
