@@ -2,7 +2,7 @@ Blockchain data services protocol library
 
 # Setup
 
-Please download and include [the es-ss.js]("./es-ss.js") file in your project.
+Please download and include [the es-ss.js]("es-ss.js") file in your project.
 
 # Usage
 
