@@ -58,7 +58,27 @@ class ESSS {
     }
 
     searchUsingAbi(_abiHash) {
-
+        // request initialisation
+        var xhr = new XMLHttpRequest();
+        var url = this.searchEngineBaseUrl + "/api/es_search";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        //data
+        var data = '{"query":{"bool":{"must":[{"match":{"abiShaList":"' + _abiHash + '"}}]}}}'
+        //execution
+        xhr.onload = function(e) {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                } else {
+                    console.error(xhr.statusText);
+                }
+            }
+        };
+        xhr.onerror = function(e) {
+            console.error(xhr.statusText);
+        };
+        xhr.send(JSON.stringify(JSON.parse(data)));
     }
 
     searchUsingKeywords(_keywords) {
@@ -70,3 +90,16 @@ class ESSS {
     }
 
 }
+
+/*
+{
+  "query": {
+    "bool": {
+      "must": [
+        { "match": { "abiShaList": "0xeebaaf546eec4bda1a771e7246e58ce83290ce0d24723c3ed62e21506994fc64" }},
+        {"query_string":{"query":"cmt, token"}}
+      ]
+    }
+  }
+}
+*/
