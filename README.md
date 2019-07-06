@@ -89,3 +89,20 @@ You can iterate through the results or access each list index explicitly as foll
 }
 ```
 
+### Search using Keywords
+This returns any and all items in the index which contain one or more instances of *any* of the words in the list.
+
+Prepare the list as JSON
+```javascript
+data = {}
+data["keywords"] = ["cmt", "CyberMiles", "token"]
+```
+
+Call the function by passing in the JSON
+```javascript
+esss.searchUsingKeywords(data)
+```
+
+Returns data in the same format as shown above.
+
+
