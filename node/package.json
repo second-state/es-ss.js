@@ -1,0 +1,29 @@
+{
+  "name": "es-ss.js",
+  "version": "1.0.0",
+  "description": "Perform complex queries against the smart contract search engine API using simple single line commands. Also, a way for you to implement M2M interoperability between the smart contract search engine API and your DApp.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/second-state/es-ss.js.git"
+  },
+  "keywords": [
+    "ethereum",
+    "cybermiles",
+    "\"second",
+    "state\"",
+    "\"smart",
+    "contract\"",
+    "\"search",
+    "engine\""
+  ],
+  "author": "https://github.com/tpmccallum",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/second-state/es-ss.js/issues"
+  },
+  "homepage": "https://github.com/second-state/es-ss.js#readme"
+}
