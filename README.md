@@ -1,17 +1,29 @@
 Blockchain data services protocol library
 
-# Setup
+## Node
+To use this in a Node.js environment please install using npm, as shown below.
 
-Please download and include [the es-ss.js](https://github.com/second-state/es-ss.js/blob/master/es-ss.js) file in your project.
+```
+npm install es-ss.js
+```
 
-# Usage
+Once installed, please require it inside your software's appropriate application (js) file, as shown below.
 
-## Instantiate
-Pass in the protocol & base URL ( *without the trailing slash* ) of a working [smart contract search engine](https://github.com/second-state/smart-contract-search-engine) implementation.
+```
+var esss = require('es-ss.js');
+```
+You can now call each of the available functions as shown below in the *Usage* section.
+
+## Traditional HTML/JS (non Node)
+*Note:* If you would just like to use this without node (traditional HTML/JS environment), please simply download the [the es-ss.js](https://github.com/second-state/es-ss.js/blob/master/es-ss.js) file to disk and then instantiate the object using the following syntax. Pass in the protocol & base URL ( *without the trailing slash* ) of a working [smart contract search engine](https://github.com/second-state/smart-contract-search-engine) implementation.
 
 ```javascript
 var esss = new ESSS("https://ethereum.search.secondstate.io")
 ```
+
+# Usage
+
+All of the following commands can be called using the syntax provided (regardless of if you are using server side Node.js or traditional client-side HTTP/JS code).
 
 ## Call functions
 
