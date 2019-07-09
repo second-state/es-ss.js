@@ -1,6 +1,6 @@
 {
   "name": "es-ss.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Perform complex queries against the smart contract search engine API using simple single line commands. Also, a way for you to implement M2M interoperability between the smart contract search engine API and your DApp.",
   "main": "index.js",
   "scripts": {

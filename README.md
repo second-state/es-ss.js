@@ -120,3 +120,38 @@ esss.searchUsingKeywordsAndAbi("0x2b5710e2cf7eb7c9bd50bfac8e89070bdfed6eb58f0c26
 ```
 
 Returns data in the same format as shown above.
+
+### Get ABI count
+This returns the number of indexed ABIs
+```javascript
+getAbiCount()
+```
+Returns a single integer
+```
+3
+```
+
+### Get all count
+This returns the number of contracts which are known (regardless of whether the smart contract search engine has an ABI which is associated with that contract)
+```javascript
+getAllCount()
+````
+Returns a single integer
+```
+205 556
+```
+
+### Get contract count
+This returns the number of contracts which have at least one ABI associated with them
+```javascript
+getContractCount()
+```
+Returns a single integer
+```
+257
+```
+
+
+
+
+
