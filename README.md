@@ -39,7 +39,13 @@ var txHash = 'hash of transaction which deployed contract' //0x1234
 
 Call the function
 ```javascript
-esss.submitAbi(abi, txHash)
+esss.submitAbi(abi, tx)
+.then(function(result) {
+    console.log(result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
 ```
 
 ### Sha an ABI
