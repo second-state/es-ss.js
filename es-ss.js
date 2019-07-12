@@ -6,27 +6,24 @@ class ESSS {
         console.log("Search Engine Base URL set to: " + this.searchEngineBaseUrl);
     }
 
-    getAbiCount() {
-        // request initialisation
-        var xhr = new XMLHttpRequest();
-        var url = this.searchEngineBaseUrl + "/api/es_get_abi_count";
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        //execution
-        xhr.onload = function(e) {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    jsonResponse = JSON.parse(xhr.responseText);
-                    console.log(jsonResponse["hits"]["total"]);
-                } else {
-                    console.error(xhr.statusText);
+    function getAbiCount() {
+    return new Promise(function(resolve, reject) {
+
+            var xhr = new XMLHttpRequest();
+            var url = this.searchEngineBaseUrl + "/api/es_get_abi_count";
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        jsonResponse = JSON.parse(xhr.responseText);
+                        abiCount = jsonResponse["hits"]["total"]
+                        resolve(abiCount);
+                    }
                 }
-            }
-        };
-        xhr.onerror = function(e) {
-            console.error(xhr.statusText);
-        };
-        xhr.send(JSON.stringify());
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+                xhr.send(JSON.stringify());
+            });
     }
 
     getAllCount() {
