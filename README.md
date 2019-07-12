@@ -136,7 +136,7 @@ Returns data in the same format as shown above.
 ### Get ABI count
 This returns the number of indexed ABIs
 ```javascript
-getAbiCount()
+esss.getAbiCount()
 ```
 Returns a single integer
 ```
@@ -146,7 +146,7 @@ Returns a single integer
 ### Get all count
 This returns the number of contracts which are known (regardless of whether the smart contract search engine has an ABI which is associated with that contract)
 ```javascript
-getAllCount()
+esss.getAllCount()
 ````
 Returns a single integer
 ```
@@ -156,7 +156,7 @@ Returns a single integer
 ### Get contract count
 This returns the number of contracts which have at least one ABI associated with them
 ```javascript
-getContractCount()
+esss.getContractCount()
 ```
 Returns a single integer
 ```
