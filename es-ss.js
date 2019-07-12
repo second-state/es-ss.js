@@ -93,29 +93,25 @@ class ESSS {
         xhr.send(JSON.stringify(data));
     }
 
-    shaAbi(_abi) {
-        // request initialisation
-        var xhr = new XMLHttpRequest();
-        var url = this.searchEngineBaseUrl + "/api/sha_an_abi";
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        //data
-        var data = {};
-        data["abi"] = _abi;
-        //execution
-        xhr.onload = function(e) {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    console.log(xhr.responseText);
-                } else {
-                    console.error(xhr.statusText);
+    function shaAbi(_abi) {
+        return new Promise(function(resolve, reject) {
+            //data
+            var data = {};
+            data["abi"] = _abi;
+            var xhr = new XMLHttpRequest();
+            var url = this.searchEngineBaseUrl + "/api/sha_an_abi";
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(xhr.responseText);
+                    }
                 }
-            }
-        };
-        xhr.onerror = function(e) {
-            console.error(xhr.statusText);
-        };
-        xhr.send(JSON.stringify(data));
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(data));
+        });
     }
 
     searchUsingAbi(_abiHash) {
