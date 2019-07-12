@@ -130,6 +130,12 @@ data["keywords"] = ["cmt", "CyberMiles", "token"]
 Call the function by passing in the JSON
 ```javascript
 esss.searchUsingKeywords(data)
+.then(function(result) {
+    console.log(result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
 ```
 
 Returns data in the same format as shown above.
