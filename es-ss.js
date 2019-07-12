@@ -114,8 +114,9 @@ class ESSS {
         });
     }
 
-    searchUsingAbi(_abiHash) {
-        // request initialisation
+    function searchUsingAbi(_abiHash) {
+        return new Promise(function(resolve, reject) {
+         // request initialisation
         var xhr = new XMLHttpRequest();
         var url = this.searchEngineBaseUrl + "/api/es_search";
         xhr.open("POST", url, true);
@@ -123,19 +124,18 @@ class ESSS {
         //data
         var data = '{"query":{"bool":{"must":[{"match":{"abiShaList":"' + _abiHash + '"}}]}}}'
         //execution
-        xhr.onload = function(e) {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    console.log(xhr.responseText);
-                } else {
-                    console.error(xhr.statusText);
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(xhr.responseText);
+                    }
                 }
-            }
-        };
-        xhr.onerror = function(e) {
-            console.error(xhr.statusText);
-        };
-        xhr.send(JSON.stringify(JSON.parse(data)));
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(data));
+        });
     }
 
     searchUsingKeywords(_keywords) {
