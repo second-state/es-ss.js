@@ -116,14 +116,14 @@ class ESSS {
 
     function searchUsingAbi(_abiHash) {
         return new Promise(function(resolve, reject) {
-         // request initialisation
-        var xhr = new XMLHttpRequest();
-        var url = this.searchEngineBaseUrl + "/api/es_search";
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        //data
-        var data = '{"query":{"bool":{"must":[{"match":{"abiShaList":"' + _abiHash + '"}}]}}}'
-        //execution
+            // request initialisation
+            var xhr = new XMLHttpRequest();
+            var url = this.searchEngineBaseUrl + "/api/es_search";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            //data
+            var data = '{"query":{"bool":{"must":[{"match":{"abiShaList":"' + _abiHash + '"}}]}}}'
+            //execution
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
