@@ -67,7 +67,8 @@ class ESSS {
         });
     }
 
-    submitAbi(_abi, _transactionHash) {
+    function submitAbi(_abi, _transactionHash) {
+        return new Promise(function(resolve, reject) {
         // request initialisation
         var xhr = new XMLHttpRequest();
         var url = this.searchEngineBaseUrl + "/api/submit_abi";
@@ -77,21 +78,20 @@ class ESSS {
         var data = {};
         data["abi"] = _abi;
         data["hash"] = _transactionHash;
-        //execution
-        xhr.onload = function(e) {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    console.log(xhr.responseText);
-                } else {
-                    console.error(xhr.statusText);
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(xhr.responseText);
+                    }
                 }
-            }
-        };
-        xhr.onerror = function(e) {
-            console.error(xhr.statusText);
-        };
-        xhr.send(JSON.stringify(data));
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(data));
+        });
     }
+
 
     function shaAbi(_abi) {
         return new Promise(function(resolve, reject) {
