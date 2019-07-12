@@ -134,7 +134,7 @@ class ESSS {
             xhr.onerror = reject;
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.send(JSON.stringify(data));
+            xhr.send(data);
         });
     }
 
