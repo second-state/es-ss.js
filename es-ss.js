@@ -99,7 +99,7 @@ class ESSS {
             var data = {};
             data["abi"] = _abi;
             var xhr = new XMLHttpRequest();
-            var url = "https://devchain-es.secondstate.io/api/sha_an_abi";
+            var url = this.searchEngineBaseUrl + "/api/sha_an_abi";
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
