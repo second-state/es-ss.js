@@ -130,6 +130,12 @@ data["keywords"] = ["cmt", "CyberMiles", "token"]
 Call the function by passing in the JSON
 ```javascript
 esss.searchUsingKeywords(data)
+.then(function(result) {
+    console.log(result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
 ```
 
 Returns data in the same format as shown above.
@@ -146,7 +152,13 @@ Call the function by passing in the Sha3 of the ABI and the list of keywords.
 
 ```javascript
 esss.searchUsingKeywordsAndAbi("0x2b5710e2cf7eb7c9bd50bfac8e89070bdfed6eb58f0c26915f034595e5443286", data)
-```
+.then(function(result) {
+    console.log(result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+  ```
 
 Returns data in the same format as shown above.
 
