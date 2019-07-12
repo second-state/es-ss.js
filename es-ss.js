@@ -46,27 +46,25 @@ class ESSS {
         });
     }
 
-    getContractCount() {
-        // request initialisation
-        var xhr = new XMLHttpRequest();
-        var url = this.searchEngineBaseUrl + "/api/es_get_contract_count";
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        //execution
-        xhr.onload = function(e) {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    jsonResponse = JSON.parse(xhr.responseText);
-                    console.log(jsonResponse["hits"]["total"]);
-                } else {
-                    console.error(xhr.statusText);
+
+    function getContractCount() {
+        return new Promise(function(resolve, reject) {
+
+            var xhr = new XMLHttpRequest();
+            var url = this.searchEngineBaseUrl + "/api/es_get_contract_count";
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        jsonResponse = JSON.parse(xhr.responseText);
+                        allCount = jsonResponse["hits"]["total"]
+                        resolve(allCount);
+                    }
                 }
-            }
-        };
-        xhr.onerror = function(e) {
-            console.error(xhr.statusText);
-        };
-        xhr.send(JSON.stringify());
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+            xhr.send(JSON.stringify());
+        });
     }
 
     submitAbi(_abi, _transactionHash) {
