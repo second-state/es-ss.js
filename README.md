@@ -52,13 +52,17 @@ var abi = '[valid abi goes here]'
 Call the function
 ```javascript
 esss.shaAbi(abi)
+.then(function(result) {
+    console.log(JSON.parse(result)["abiSha3"])
+  })
+  .catch(function() {
+    console.log("Error");
+  });
 ```
 
-Returns JSON with hash like this
+Returns hash like this
 ```javascript
-{
-  "abiSha3": "0x4722ca26325a45bfad1538b8a73d341548cfa007765f81071e3b0f966adcedff"
-}
+0x4722ca26325a45bfad1538b8a73d341548cfa007765f81071e3b0f966adcedff
 ```
 
 ### Search using ABI 
