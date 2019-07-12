@@ -76,7 +76,14 @@ This returns any and all items in the index which have the canonical determinist
 
 Call the function by passing in the Sha3 of the ABI.
 ```javascript
-esss.searchUsingAbi("0x4722ca26325a45bfad1538b8a73d341548cfa007765f81071e3b0f966adcedff")
+abi = '0x4722ca26325a45bfad1538b8a73d341548cfa007765f81071e3b0f966adcedff';
+esss.searchUsingAbi(abi)
+    .then(function(result) {
+        console.log(result)
+    })
+    .catch(function() {
+        console.log("Error");
+    });
 ```
 
 Returns (many of) the following data structures in a list format i.e. `[{"TxHash":...}, {{"TxHash":...}}, {{"TxHash":...}}]`
