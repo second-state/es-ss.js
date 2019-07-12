@@ -138,7 +138,8 @@ class ESSS {
         });
     }
 
-    searchUsingKeywords(_keywords) {
+function searchUsingKeywords(_keywords) {
+    return new Promise(function(resolve, reject) {
         // request initialisation
         var xhr = new XMLHttpRequest();
         var url = this.searchEngineBaseUrl + "/api/es_search";
@@ -162,18 +163,16 @@ class ESSS {
         xhr.onload = function(e) {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
-                    console.log(xhr.responseText);
-                } else {
-                    console.error(xhr.statusText);
+                    resolve(xhr.responseText);
                 }
             }
         };
-        xhr.onerror = function(e) {
-            console.error(xhr.statusText);
-        };
+        xhr.onerror = reject;
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify(JSON.parse(data)));
-
-    }
+    });
+}
 
     searchUsingKeywordsAndAbi(_abiHash, _keywords) {
         // request initialisation
