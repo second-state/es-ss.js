@@ -169,10 +169,16 @@ Returns a single integer
 This returns the number of contracts which have at least one ABI associated with them
 ```javascript
 esss.getContractCount()
+.then(function(result) {
+    console.log("Result is " + result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
 ```
 Returns a single integer
 ```
-257
+33
 ```
 
 
