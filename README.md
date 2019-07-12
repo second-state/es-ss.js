@@ -137,6 +137,12 @@ Returns data in the same format as shown above.
 This returns the number of indexed ABIs
 ```javascript
 esss.getAbiCount()
+.then(function(result) {
+    console.log("Result is " + result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
 ```
 Returns a single integer
 ```
