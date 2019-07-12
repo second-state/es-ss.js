@@ -21,7 +21,7 @@ You can now call each of the available functions as shown below in the *Usage* s
 var esss = new ESSS("https://ethereum.search.secondstate.io")
 ```
 
-# Usage
+# Usage Examples
 
 All of the following commands can be called using the syntax provided (regardless of if you are using server side Node.js or traditional client-side HTTP/JS code).
 
@@ -153,10 +153,16 @@ Returns a single integer
 This returns the number of contracts which are known (regardless of whether the smart contract search engine has an ABI which is associated with that contract)
 ```javascript
 esss.getAllCount()
-````
+.then(function(result) {
+    console.log("Result is " + result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+```
 Returns a single integer
 ```
-205 556
+333
 ```
 
 ### Get contract count
