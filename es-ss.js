@@ -210,3 +210,4 @@ class ESSS {
         });
     }
 }
+module.exports = ESSS;
