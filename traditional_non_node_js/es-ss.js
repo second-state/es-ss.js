@@ -6,7 +6,7 @@ class ESSS {
         console.log("Search Engine Base URL set to: " + this.searchEngineBaseUrl);
     }
 
-    function getAbiCount() {
+    getAbiCount() {
         return new Promise(function(resolve, reject) {
 
             var xhr = new XMLHttpRequest();
@@ -26,7 +26,7 @@ class ESSS {
         });
     }
 
-    function getAllCount() {
+    getAllCount() {
         return new Promise(function(resolve, reject) {
 
             var xhr = new XMLHttpRequest();
@@ -47,7 +47,7 @@ class ESSS {
     }
 
 
-    function getContractCount() {
+    getContractCount() {
         return new Promise(function(resolve, reject) {
 
             var xhr = new XMLHttpRequest();
@@ -67,7 +67,7 @@ class ESSS {
         });
     }
 
-    function submitAbi(_abi, _transactionHash) {
+    submitAbi(_abi, _transactionHash) {
         return new Promise(function(resolve, reject) {
             // request initialisation
             var xhr = new XMLHttpRequest();
@@ -93,7 +93,7 @@ class ESSS {
     }
 
 
-    function shaAbi(_abi) {
+    shaAbi(_abi) {
         return new Promise(function(resolve, reject) {
             //data
             var data = {};
@@ -114,7 +114,7 @@ class ESSS {
         });
     }
 
-    function searchUsingAbi(_abiHash) {
+    searchUsingAbi(_abiHash) {
         return new Promise(function(resolve, reject) {
             // request initialisation
             var xhr = new XMLHttpRequest();
@@ -138,7 +138,7 @@ class ESSS {
         });
     }
 
-    function searchUsingKeywords(_keywords) {
+    searchUsingKeywords(_keywords) {
         return new Promise(function(resolve, reject) {
             // request initialisation
             var xhr = new XMLHttpRequest();
@@ -174,7 +174,7 @@ class ESSS {
         });
     }
 
-    function searchUsingKeywordsAndAbi(_abiHash, _keywords) {
+    searchUsingKeywordsAndAbi(_abiHash, _keywords) {
         return new Promise(function(resolve, reject) {
             // request initialisation
             var xhr = new XMLHttpRequest();
