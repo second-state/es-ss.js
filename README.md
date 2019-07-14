@@ -20,24 +20,24 @@ You can then create an instantiation of the es-js software by passing in the pro
 
 ```javascript
 // Ethereum (ETH) MainNet 
-let esssEthMainNet = new ESSS('https://ethereum.search.secondstate.io');
+let searchEngineProvider = new ESSS('https://ethereum.search.secondstate.io');
 
 // Ethereum Classic (ETC) MainNet
-let esssEthClassicMainNet = new ESSS('https://ethereum-classic.search.secondstate.io');
+//let searchEngineProvider = new ESSS('https://ethereum-classic.search.secondstate.io');
 
 // CyberMiles (CMT) MainNet
-let esssCyberMilesMainNet = new ESSS('https://cmt.search.secondstate.io');
+//let searchEngineProvider = new ESSS('https://cmt.search.secondstate.io');
 
 // CyberMiles (CMT) TestNet
-let esssCyberMilesTestNet = new ESSS('https://cmt-testnet.search.secondstate.io');
+//let searchEngineProvider = new ESSS('https://cmt-testnet.search.secondstate.io');
 
 // SecondState DevChain
-let esssSecondStateDevChain = new ESSS('https://devchain-es.secondstate.io/');
+//let searchEngineProvider = new ESSS('https://devchain-es.secondstate.io/');
 ```
 You can now call each of the available functions as shown below in the *Usage* section.
 
 # Usage Examples
-The following are all using the `esssEthMainNet` provider from above. Please ensure to use the correct provider for your application.
+The following are all using the `EthMainNet` provider from above. Please ensure to use the correct provider for your application.
 
 ### Submit ABI and hash for indexing
 Create variables to be passed into the `submitAbi` function.
@@ -49,7 +49,7 @@ var txHash = 'hash of transaction which deployed contract' //0x1234
 
 Call the function
 ```javascript
-var abiSubmission = esssEthMainNet.submitAbi(abi, txHash);
+var abiSubmission = searchEngineProvider.submitAbi(abi, txHash);
 abiSubmission.then(function(result) {
     console.log("Result is " + result);
   })
@@ -67,7 +67,7 @@ var abi = '[valid abi goes here]'
 
 Call the function
 ```javascript
-var abiSha = esssEthMainNet.shaAbi(abi);
+var abiSha = searchEngineProvider.shaAbi(abi);
 abiSha.then(function(result) {
     console.log("Result is " + result);
   })
@@ -87,7 +87,7 @@ This returns any and all items in the index which have the canonical determinist
 Call the function by passing in the Sha3 of the ABI.
 ```javascript
 abiHash = '0x4722ca26325a45bfad1538b8a73d341548cfa007765f81071e3b0f966adcedff';
-var abiSearch = esssEthMainNet.searchUsingAbi(abiHash);
+var abiSearch = searchEngineProvider.searchUsingAbi(abiHash);
 abiSearch.then(function(result) {
     console.log("Result is " + result);
   })
@@ -139,7 +139,7 @@ data["keywords"] = ["cmt", "CyberMiles", "token"]
 
 Call the function by passing in the JSON
 ```javascript
-var keywordSearch = esssEthMainNet.searchUsingKeywords(data);
+var keywordSearch = searchEngineProvider.searchUsingKeywords(data);
 keywordSearch.then(function(result) {
     console.log("Result is " + result);
   })
@@ -165,7 +165,7 @@ abiHash = '0x4722ca26325a45bfad1538b8a73d341548cfa007765f81071e3b0f966adcedff';
 Call the function by passing in the Sha3 of the ABI and the list of keywords.
 
 ```javascript
-var keywordAbiSearch = esssEthMainNet.searchUsingKeywordsAndAbi(abiHash, data);
+var keywordAbiSearch = searchEngineProvider.searchUsingKeywordsAndAbi(abiHash, data);
 keywordAbiSearch.then(function(result) {
     console.log("Result is " + result);
   })
@@ -179,7 +179,7 @@ Returns data in the same format as shown above.
 ### Get ABI count
 This returns the number of indexed ABIs
 ```javascript
-var abiCount = esssEthMainNet.getAbiCount();
+var abiCount = searchEngineProvider.getAbiCount();
 abiCount.then(function(result) {
     console.log("Result is " + result);
   })
@@ -195,7 +195,7 @@ Returns a single integer
 ### Get all count
 This returns the number of contracts which are known (regardless of whether the smart contract search engine has an ABI which is associated with that contract)
 ```javascript
-var allCount = esssEthMainNet.getAllCount();
+var allCount = searchEngineProvider.getAllCount();
 allCount.then(function(result) {
     console.log("Result is " + result);
   })
@@ -211,7 +211,7 @@ Returns a single integer
 ### Get contract count
 This returns the number of contracts which have at least one ABI associated with them
 ```javascript
-var contractCount = esssEthMainNet.getContractCount();
+var contractCount = searchEngineProvider.getContractCount();
 contractCount.then(function(result) {
     console.log("Result is " + result);
   })
