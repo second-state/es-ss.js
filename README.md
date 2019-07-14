@@ -1,19 +1,19 @@
 Blockchain data services protocol library
 
-## Node
+## Node install
 To use this in a Node.js environment please install using npm, as shown below.
 
 ```bash
 npm install es-ss.js
 ```
-
+## Import
 Once installed, please require it inside your software's appropriate application (js) file, as shown below.
 
 ```javascript
 let esss = require('./es-ss');  
 let ESSS = esss.ESSS;
 ```
-
+## Set provider
 You can then create an instantiation of the es-js software by passing in the provider (passing in any single working smart contract search engine provider URL as part of the instantiation). Here are some examples.
 
 ```javascript
