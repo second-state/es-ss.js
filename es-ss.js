@@ -1,16 +1,31 @@
-class ESSS {
+function ESSS(_searchEngineBaseUrl) {
+    this.searchEngineBaseUrl = _searchEngineBaseUrl;
+    
     // Search Engine Base URL (Please include protocol. Please do not include trailing slash)
     // Example: https://search-engine.com
-    constructor(_searchEngineBaseUrl) {
+    /*constructor(_searchEngineBaseUrl) {
         this.searchEngineBaseUrl = _searchEngineBaseUrl;
         console.log("Search Engine Base URL set to: " + this.searchEngineBaseUrl);
+    }*/
+
+    this.describe = function(){
+        let description = "Provider: " + this.searchEngineBaseUrl;
+        return description;
     }
 
-    function getAbiCount() {
-        return new Promise(function(resolve, reject) {
+    this.getSearchEngineBaseUrl = function(){
+        return this.searchEngineBaseUrl;
+    }
 
+    this.setSearchEngineBaseUrl = function(_searchEngineBaseUrl){
+        this.searchEngineBaseUrl = _searchEngineBaseUrl;
+    }
+
+    this.getAbiCount = function() {
+        let url = this.getSearchEngineBaseUrl() + "/api/es_get_abi_count";
+        return new Promise(function(resolve, reject) {
+            XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
             var xhr = new XMLHttpRequest();
-            var url = this.searchEngineBaseUrl + "/api/es_get_abi_count";
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
@@ -18,7 +33,7 @@ class ESSS {
                         abiCount = jsonResponse["hits"]["total"]
                         resolve(abiCount);
                     }
-                }
+                } 
             };
             xhr.onerror = reject;
             xhr.open("POST", url, true);
@@ -26,11 +41,11 @@ class ESSS {
             });
     }
 
-    function getAllCount() {
+    this.getAllCount = function() {
+        let url = this.getSearchEngineBaseUrl() + "/api/es_get_all_count";
         return new Promise(function(resolve, reject) {
-
+            XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
             var xhr = new XMLHttpRequest();
-            var url = this.searchEngineBaseUrl + "/api/es_get_all_count";
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
@@ -47,17 +62,17 @@ class ESSS {
     }
 
 
-    function getContractCount() {
+    this.getContractCount = function() {
+        let url = this.getSearchEngineBaseUrl() + "/api/es_get_contract_count";
         return new Promise(function(resolve, reject) {
-
+            XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
             var xhr = new XMLHttpRequest();
-            var url = this.searchEngineBaseUrl + "/api/es_get_contract_count";
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
                         jsonResponse = JSON.parse(xhr.responseText);
-                        allCount = jsonResponse["hits"]["total"]
-                        resolve(allCount);
+                        contractCount = jsonResponse["hits"]["total"]
+                        resolve(contractCount);
                     }
                 }
             };
@@ -67,11 +82,11 @@ class ESSS {
         });
     }
 
-    function submitAbi(_abi, _transactionHash) {
+    this.submitAbi = function(_abi, _transactionHash) {
+        let url = this.getSearchEngineBaseUrl() + "/api/submit_abi";
         return new Promise(function(resolve, reject) {
-        // request initialisation
+        XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
         var xhr = new XMLHttpRequest();
-        var url = this.searchEngineBaseUrl + "/api/submit_abi";
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         //data
@@ -93,13 +108,14 @@ class ESSS {
     }
 
 
-    function shaAbi(_abi) {
+    this.shaAbi = function(_abi) {
+        let url = this.getSearchEngineBaseUrl() + "/api/sha_an_abi";
         return new Promise(function(resolve, reject) {
-            //data
+            XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+            var xhr = new XMLHttpRequest();
             var data = {};
             data["abi"] = _abi;
-            var xhr = new XMLHttpRequest();
-            var url = this.searchEngineBaseUrl + "/api/sha_an_abi";
+            
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
@@ -114,11 +130,12 @@ class ESSS {
         });
     }
 
-    function searchUsingAbi(_abiHash) {
+    this.searchUsingAbi = function(_abiHash) {
+        let url = this.getSearchEngineBaseUrl() + "/api/es_search";
         return new Promise(function(resolve, reject) {
             // request initialisation
+            XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
             var xhr = new XMLHttpRequest();
-            var url = this.searchEngineBaseUrl + "/api/es_search";
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/json");
             //data
@@ -138,11 +155,12 @@ class ESSS {
         });
     }
 
-    function searchUsingKeywords(_keywords) {
+    this.searchUsingKeywords = function(_keywords) {
+        let url = this.getSearchEngineBaseUrl() + "/api/es_search";
         return new Promise(function(resolve, reject) {
             // request initialisation
+            XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
             var xhr = new XMLHttpRequest();
-            var url = this.searchEngineBaseUrl + "/api/es_search";
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/json");
             //data
@@ -174,11 +192,12 @@ class ESSS {
         });
     }
 
-    function searchUsingKeywordsAndAbi(_abiHash, _keywords) {
+    this.searchUsingKeywordsAndAbi = function(_abiHash, _keywords) {
+        let url = this.getSearchEngineBaseUrl() + "/api/es_search";
         return new Promise(function(resolve, reject) {
         // request initialisation
+        XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
         var xhr = new XMLHttpRequest();
-        var url = this.searchEngineBaseUrl + "/api/es_search";
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         //data
@@ -210,4 +229,6 @@ class ESSS {
         });
     }
 }
-module.exports = ESSS;
+module.exports = {
+    ESSS: ESSS
+}
