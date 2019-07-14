@@ -7,10 +7,10 @@ class ESSS {
     }
 
     getAbiCount() {
+        var url = this.searchEngineBaseUrl + "/api/es_get_abi_count";
         return new Promise(function(resolve, reject) {
 
             var xhr = new XMLHttpRequest();
-            var url = this.searchEngineBaseUrl + "/api/es_get_abi_count";
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
@@ -27,10 +27,10 @@ class ESSS {
     }
 
     getAllCount() {
+        var url = this.searchEngineBaseUrl + "/api/es_get_all_count";
         return new Promise(function(resolve, reject) {
 
             var xhr = new XMLHttpRequest();
-            var url = this.searchEngineBaseUrl + "/api/es_get_all_count";
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
@@ -48,10 +48,11 @@ class ESSS {
 
 
     getContractCount() {
+        var url = this.searchEngineBaseUrl + "/api/es_get_contract_count";
         return new Promise(function(resolve, reject) {
 
             var xhr = new XMLHttpRequest();
-            var url = this.searchEngineBaseUrl + "/api/es_get_contract_count";
+
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
@@ -68,10 +69,11 @@ class ESSS {
     }
 
     submitAbi(_abi, _transactionHash) {
+        var url = this.searchEngineBaseUrl + "/api/submit_abi";
         return new Promise(function(resolve, reject) {
             // request initialisation
             var xhr = new XMLHttpRequest();
-            var url = this.searchEngineBaseUrl + "/api/submit_abi";
+
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/json");
             //data
@@ -94,12 +96,13 @@ class ESSS {
 
 
     shaAbi(_abi) {
+        var url = this.searchEngineBaseUrl + "/api/sha_an_abi";
         return new Promise(function(resolve, reject) {
             //data
             var data = {};
             data["abi"] = _abi;
             var xhr = new XMLHttpRequest();
-            var url = this.searchEngineBaseUrl + "/api/sha_an_abi";
+
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
@@ -115,10 +118,11 @@ class ESSS {
     }
 
     searchUsingAbi(_abiHash) {
+        var url = this.searchEngineBaseUrl + "/api/es_search";
         return new Promise(function(resolve, reject) {
             // request initialisation
             var xhr = new XMLHttpRequest();
-            var url = this.searchEngineBaseUrl + "/api/es_search";
+
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/json");
             //data
@@ -139,10 +143,11 @@ class ESSS {
     }
 
     searchUsingKeywords(_keywords) {
+        var url = this.searchEngineBaseUrl + "/api/es_search";
         return new Promise(function(resolve, reject) {
             // request initialisation
             var xhr = new XMLHttpRequest();
-            var url = this.searchEngineBaseUrl + "/api/es_search";
+
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/json");
             //data
@@ -175,10 +180,11 @@ class ESSS {
     }
 
     searchUsingKeywordsAndAbi(_abiHash, _keywords) {
+        var url = this.searchEngineBaseUrl + "/api/es_search";
         return new Promise(function(resolve, reject) {
             // request initialisation
             var xhr = new XMLHttpRequest();
-            var url = this.searchEngineBaseUrl + "/api/es_search";
+
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/json");
             //data
