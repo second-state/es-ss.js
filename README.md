@@ -1,33 +1,41 @@
 Blockchain data services protocol library
 
-## Node
+## Node install
 To use this in a Node.js environment please install using npm, as shown below.
 
-```
+```bash
 npm install es-ss.js
 ```
-
+## Import
 Once installed, please require it inside your software's appropriate application (js) file, as shown below.
 
+```javascript
+let esss = require('./es-ss');  
+let ESSS = esss.ESSS;
 ```
-var esss = require('es-ss.js');
+## Set provider
+You can then create an instantiation of the es-js software by passing in the provider (passing in any single working smart contract search engine provider URL as part of the instantiation). Here are some examples.
+
+```javascript
+// Ethereum (ETH) MainNet 
+let esssEthMainNet = new ESSS('https://ethereum.search.secondstate.io');
+
+// Ethereum Classic (ETC) MainNet
+let esssEthClassicMainNet = new ESSS('https://ethereum-classic.search.secondstate.io');
+
+// CyberMiles (CMT) MainNet
+let esssCyberMilesMainNet = new ESSS('https://cmt.search.secondstate.io');
+
+// CyberMiles (CMT) TestNet
+let esssCyberMilesTestNet = new ESSS('https://cmt-testnet.search.secondstate.io');
+
+// SecondState DevChain
+let esssSecondStateDevChain = new ESSS('https://devchain-es.secondstate.io/');
 ```
 You can now call each of the available functions as shown below in the *Usage* section.
 
-## Traditional HTML/JS (non Node)
-*Note:* If you would just like to use this without node (traditional HTML/JS environment), please simply download the [the es-ss.js](https://github.com/second-state/es-ss.js/blob/master/es-ss.js) file to disk and then instantiate the object using the following syntax. Pass in the protocol & base URL ( *without the trailing slash* ) of a working [smart contract search engine](https://github.com/second-state/smart-contract-search-engine) implementation.
-
-```javascript
-var esss = new ESSS("https://ethereum.search.secondstate.io")
-```
-
 # Usage Examples
-
-All of the following commands can be called using the syntax provided (regardless of if you are using server side Node.js or traditional client-side HTTP/JS code).
-
-## Call functions
-
-instance.function(args)
+The following are all using the `esssEthMainNet` provider from above. Please ensure to use the correct provider for your application.
 
 ### Submit ABI and hash for indexing
 Create variables to be passed into the `submitAbi` function.
@@ -39,9 +47,9 @@ var txHash = 'hash of transaction which deployed contract' //0x1234
 
 Call the function
 ```javascript
-esss.submitAbi(abi, tx)
-.then(function(result) {
-    console.log(result);
+var abiSubmission = esssEthMainNet.submitAbi(abi, txHash);
+abiSubmission.then(function(result) {
+    console.log("Result is " + result);
   })
   .catch(function() {
     console.log("Error");
@@ -57,9 +65,9 @@ var abi = '[valid abi goes here]'
 
 Call the function
 ```javascript
-esss.shaAbi(abi)
-.then(function(result) {
-    console.log(JSON.parse(result)["abiSha3"])
+var abiSha = esssEthMainNet.shaAbi(abi);
+abiSha.then(function(result) {
+    console.log("Result is " + result);
   })
   .catch(function() {
     console.log("Error");
@@ -76,14 +84,14 @@ This returns any and all items in the index which have the canonical determinist
 
 Call the function by passing in the Sha3 of the ABI.
 ```javascript
-abi = '0x4722ca26325a45bfad1538b8a73d341548cfa007765f81071e3b0f966adcedff';
-esss.searchUsingAbi(abi)
-    .then(function(result) {
-        console.log(result)
-    })
-    .catch(function() {
-        console.log("Error");
-    });
+abiHash = '0x4722ca26325a45bfad1538b8a73d341548cfa007765f81071e3b0f966adcedff';
+var abiSearch = esssEthMainNet.searchUsingAbi(abiHash);
+abiSearch.then(function(result) {
+    console.log("Result is " + result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
 ```
 
 Returns (many of) the following data structures in a list format i.e. `[{"TxHash":...}, {{"TxHash":...}}, {{"TxHash":...}}]`
@@ -129,9 +137,9 @@ data["keywords"] = ["cmt", "CyberMiles", "token"]
 
 Call the function by passing in the JSON
 ```javascript
-esss.searchUsingKeywords(data)
-.then(function(result) {
-    console.log(result);
+var keywordSearch = esssEthMainNet.searchUsingKeywords(data);
+keywordSearch.then(function(result) {
+    console.log("Result is " + result);
   })
   .catch(function() {
     console.log("Error");
@@ -148,12 +156,16 @@ Prepare the list as JSON
 data = {}
 data["keywords"] = ["cmt", "CyberMiles", "token"]
 ```
+Prepare the abiHash as a string
+```javascript
+abiHash = '0x4722ca26325a45bfad1538b8a73d341548cfa007765f81071e3b0f966adcedff';
+```
 Call the function by passing in the Sha3 of the ABI and the list of keywords.
 
 ```javascript
-esss.searchUsingKeywordsAndAbi("0x2b5710e2cf7eb7c9bd50bfac8e89070bdfed6eb58f0c26915f034595e5443286", data)
-.then(function(result) {
-    console.log(result);
+var keywordAbiSearch = esssEthMainNet.searchUsingKeywordsAndAbi(abiHash, data);
+keywordAbiSearch.then(function(result) {
+    console.log("Result is " + result);
   })
   .catch(function() {
     console.log("Error");
@@ -165,8 +177,8 @@ Returns data in the same format as shown above.
 ### Get ABI count
 This returns the number of indexed ABIs
 ```javascript
-esss.getAbiCount()
-.then(function(result) {
+var abiCount = esssEthMainNet.getAbiCount();
+abiCount.then(function(result) {
     console.log("Result is " + result);
   })
   .catch(function() {
@@ -175,14 +187,14 @@ esss.getAbiCount()
 ```
 Returns a single integer
 ```
-3
+105
 ```
 
 ### Get all count
 This returns the number of contracts which are known (regardless of whether the smart contract search engine has an ABI which is associated with that contract)
 ```javascript
-esss.getAllCount()
-.then(function(result) {
+var allCount = esssEthMainNet.getAllCount();
+allCount.then(function(result) {
     console.log("Result is " + result);
   })
   .catch(function() {
@@ -191,26 +203,22 @@ esss.getAllCount()
 ```
 Returns a single integer
 ```
-333
+953457
 ```
 
 ### Get contract count
 This returns the number of contracts which have at least one ABI associated with them
 ```javascript
-esss.getContractCount()
-.then(function(result) {
+var contractCount = esssEthMainNet.getContractCount();
+contractCount.then(function(result) {
     console.log("Result is " + result);
   })
   .catch(function() {
     console.log("Error");
   });
+
 ```
 Returns a single integer
 ```
-33
+24501
 ```
-
-
-
-
-
