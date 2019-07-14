@@ -1,5 +1,7 @@
 Blockchain data services protocol library
 
+If you would like to use this product outside of a server environment i.e. just use HTML/JS on the client side, please head over to the [traditional non node js area](https://github.com/second-state/es-ss.js/tree/master/traditional_non_node_js). Otherwise, continue below using NodeJS.
+
 ## Node install
 To use this in a Node.js environment please install using npm, as shown below.
 
