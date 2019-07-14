@@ -30,9 +30,8 @@ abiCount.then(function(result) {
     console.log("Error");
   });
 
-var allCount = esssEthMainNet.getAllCount();
-
 //getAllCount
+var allCount = esssEthMainNet.getAllCount();
 allCount.then(function(result) {
     console.log("Result is " + result);
   })
