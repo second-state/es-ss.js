@@ -1,6 +1,8 @@
+// Importing into your application
 let esss = require('./es-ss');  
 let ESSS = esss.ESSS;
 
+//Examples of setting the provider 
 // Ethereum (ETH) MainNet 
 let esssEthMainNet = new ESSS('https://ethereum.search.secondstate.io');
 
@@ -16,7 +18,10 @@ let esssCyberMilesTestNet = new ESSS('https://cmt-testnet.search.secondstate.io'
 // SecondState DevChain
 let esssSecondStateDevChain = new ESSS('https://devchain-es.secondstate.io/');
 
-// 
+// Examples of function calls
+// Please note, these examples all use ETH MainNet, you must reference your correct provider for your needs
+
+//getAbiCount
 var abiCount = esssEthMainNet.getAbiCount();
 abiCount.then(function(result) {
     console.log("Result is " + result);
@@ -26,6 +31,8 @@ abiCount.then(function(result) {
   });
 
 var allCount = esssEthMainNet.getAllCount();
+
+//getAllCount
 allCount.then(function(result) {
     console.log("Result is " + result);
   })
@@ -33,6 +40,7 @@ allCount.then(function(result) {
     console.log("Error");
   });
 
+//getContractCount
 var contractCount = esssEthMainNet.getContractCount();
 contractCount.then(function(result) {
     console.log("Result is " + result);
@@ -41,6 +49,7 @@ contractCount.then(function(result) {
     console.log("Error");
   });
 
+//submitAbi
 var abiSubmission = esssEthMainNet.submitAbi(abi, tx);
 abiSubmission.then(function(result) {
     console.log("Result is " + result);
@@ -49,7 +58,7 @@ abiSubmission.then(function(result) {
     console.log("Error");
   });
 
-
+//shaAbi
 var abiSha = esssEthMainNet.shaAbi(abi);
 abiSha.then(function(result) {
     console.log("Result is " + result);
@@ -58,6 +67,7 @@ abiSha.then(function(result) {
     console.log("Error");
   });
 
+//searchUsingAbi
 abiHash = '0x8d167c9d853afbe7638706bf45f613cd7d8b6e8fdb8bab069052105b7bf9b3c4';
 var abiSearch = esssEthMainNet.searchUsingAbi(abiHash);
 abiSearch.then(function(result) {
@@ -67,6 +77,7 @@ abiSearch.then(function(result) {
     console.log("Error");
   });
 
+//searchUsingKeywords
 keywords = {};
 keywords["keywords"] = ['cybermiles, cmt'];
 var keywordSearch = esssEthMainNet.searchUsingKeywords(keywords);
@@ -77,7 +88,7 @@ keywordSearch.then(function(result) {
     console.log("Error");
   });
 
-
+// searchUsingKeywordsAndAbi
 abiHash = '0x8d167c9d853afbe7638706bf45f613cd7d8b6e8fdb8bab069052105b7bf9b3c4';
 keywords = {};
 keywords["keywords"] = ['ETHLIUM'];
