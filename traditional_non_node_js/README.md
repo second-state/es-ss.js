@@ -38,6 +38,26 @@ esss.submitAbi(abi, tx)
   });
 ```
 
+
+### Submit many ABIs and a single hash for indexing
+Create variables to be passed into the `submitManyAbis` function.
+
+```javascript
+var abis = {'abis': {0: {'abi': '[valid abi string goes here]'}, 1: {'abi': '[valid abi string goes here]'}}}
+var txHash = 'hash of transaction which deployed contract' //0x1234
+```
+
+Call the function
+```javascript
+esss.submitManyAbis(abis, tx)
+.then(function(result) {
+    console.log(result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+```
+
 ### Sha an ABI
 This produces a canonical deterministic Sha3 hash of an ABI. The hash (which is returned from this function) can be used to filter searches as well as customise frontend displays. The next item in this documentation `searchUsingAbi` is a good example of searching for items which adhere to a specific ABI. As you will see, we are about to use this newly created abiSha3 for search. 
 

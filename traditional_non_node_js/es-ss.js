@@ -94,6 +94,32 @@ class ESSS {
         });
     }
 
+    submitManyAbis(_abis, _transactionHash) {
+        var url = this.searchEngineBaseUrl + "/api/submit_many_abis";
+        return new Promise(function(resolve, reject) {
+            // request initialisation
+            var xhr = new XMLHttpRequest();
+
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            //data
+            var data = {};
+            data["abi"] = _abis;
+            data["hash"] = _transactionHash;
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(xhr.responseText);
+                    }
+                }
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(data));
+        });
+    }
+
 
     shaAbi(_abi) {
         var url = this.searchEngineBaseUrl + "/api/sha_an_abi";
