@@ -104,7 +104,7 @@ class ESSS {
             xhr.setRequestHeader("Content-Type", "application/json");
             //data
             var data = {};
-            data["abi"] = _abis;
+            data["abis"] = _abis;
             data["hash"] = _transactionHash;
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {
