@@ -60,10 +60,10 @@ abiSubmission.then(function(result) {
 
 ### Submit many ABIs (in conjuntion with a single Tx hash) for indexing
 Create variables to be passed into the `submitManyAbis` function.
-Each ABI must be the *string* representation of the ABI
+
 
 ```javascript
-var abis = {'abis': {0: {'abi': '[valid abi string goes here]'}, 1: {'abi': '[valid abi string goes here]'}}}
+var abis = {'abis': {0: {'abi': [valid abi string goes here]}, 1: {'abi': [valid abi string goes here]}}}
 var txHash = 'hash of transaction which deployed contract' //0x1234
 ```
 
