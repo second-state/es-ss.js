@@ -68,6 +68,29 @@ class ESSS {
         });
     }
 
+    describeUsingTx(_transactionHash) {
+        let url = this.getSearchEngineBaseUrl() + "/api/describe_using_tx";
+        return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        //data
+        var data = {};
+        data["hash"] = _transactionHash;
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(xhr.responseText);
+                    }
+                }
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(data));
+        });
+    }
+
     submitAbi(_abi, _transactionHash) {
         var url = this.searchEngineBaseUrl + "/api/submit_abi";
         return new Promise(function(resolve, reject) {
