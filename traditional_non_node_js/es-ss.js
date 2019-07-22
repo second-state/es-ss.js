@@ -69,7 +69,7 @@ class ESSS {
     }
 
     describeUsingTx(_transactionHash) {
-        let url = this.getSearchEngineBaseUrl() + "/api/describe_using_tx";
+        let url = this.searchEngineBaseUrl + "/api/describe_using_tx";
         return new Promise(function(resolve, reject) {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", url, true);
