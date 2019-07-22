@@ -19,6 +19,24 @@ All of the following commands can be called using traditional client-side HTTP/J
 
 instance.function(args)
 
+### Describe an item using its transaction hash
+Create variables to be passed into the `submitAbi` function.
+
+```javascript
+var txHash = 'hash of transaction which deployed contract' //0x1234
+```
+
+Call the function
+```javascript
+esss.describeUsingTx(txHash)
+.then(function(result) {
+    console.log(result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+```
+
 ### Submit ABI and hash for indexing
 Create variables to be passed into the `submitAbi` function.
 
@@ -29,7 +47,7 @@ var txHash = 'hash of transaction which deployed contract' //0x1234
 
 Call the function
 ```javascript
-esss.submitAbi(abi, tx)
+esss.submitAbi(abi, txHash)
 .then(function(result) {
     console.log(result);
   })
@@ -49,7 +67,7 @@ var txHash = 'hash of transaction which deployed contract' //0x1234
 
 Call the function
 ```javascript
-esss.submitManyAbis(abis, tx)
+esss.submitManyAbis(abis, txHash)
 .then(function(result) {
     console.log(result);
   })
