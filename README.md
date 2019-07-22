@@ -39,6 +39,24 @@ You can now call each of the available functions as shown below in the *Usage* s
 # Usage Examples
 The following are all using the `EthMainNet` provider from above. Please ensure to use the correct provider for your application.
 
+### Describe an item using its transaction hash
+Create variables to be passed into the `submitAbi` function.
+
+```javascript
+var txHash = 'hash of transaction which deployed contract' //0x1234
+```
+
+Call the function
+```javascript
+var description = searchEngineProvider.describeUsingTx(txHash);
+description.then(function(result) {
+    console.log("Result is " + result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+```
+
 ### Submit ABI and hash for indexing
 Create variables to be passed into the `submitAbi` function.
 
