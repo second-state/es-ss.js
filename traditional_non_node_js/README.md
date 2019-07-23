@@ -19,6 +19,25 @@ All of the following commands can be called using traditional client-side HTTP/J
 
 instance.function(args)
 
+### Update the quality field in ES
+Create variables to be passed into the `updateQualityScore` function.
+
+```javascript
+var contractAddress = '0x1234...56789
+var qualityScore = '25'
+```
+
+Call the function
+```javascript
+esss.updateQualityScore(contractAddress, qualityScore)
+.then(function(result) {
+    console.log(result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+```
+
 ### Describe an item using its transaction hash
 Create variables to be passed into the `submitAbi` function.
 
