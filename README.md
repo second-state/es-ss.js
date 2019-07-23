@@ -39,6 +39,23 @@ You can now call each of the available functions as shown below in the *Usage* s
 # Usage Examples
 The following are all using the `EthMainNet` provider from above. Please ensure to use the correct provider for your application.
 
+### Update the quality score field
+```javascript
+var contractAddress = '0x12345...678'
+var qualityScore = '50' //Must be a number between 0 and 100
+```
+
+Call the function
+```javascript
+var qualityScoreResult = searchEngineProvider.updateQualityScore(contractAddress, qualityScore);
+qualityScoreResult.then(function(result) {
+    console.log("Result is " + result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+```
+
 ### Describe an item using its transaction hash
 Create variables to be passed into the `submitAbi` function.
 
