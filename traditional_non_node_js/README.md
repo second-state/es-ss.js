@@ -1,43 +1,23 @@
 Blockchain data services protocol library
 
-If you would like to use this product outside of a server environment i.e. just use HTML/JS on the client side, please head over to the [traditional non node js area](https://github.com/second-state/es-ss.js/tree/master/traditional_non_node_js). Otherwise, continue below using NodeJS.
+## Traditional HTML/JS (non Node)
+*Note:* If you would just like to use this without node (traditional HTML/JS environment), please simply download the [the es-ss.js](https://github.com/second-state/es-ss.js/blob/master/traditional_non_node_js/es-ss.js) file to disk and then instantiate the object using the following syntax. Pass in the protocol & base URL ( *without the trailing slash* ) of a working [smart contract search engine](https://github.com/second-state/smart-contract-search-engine) implementation.
 
-## Node install
-To use this in a Node.js environment please install using npm, as shown below.
+*Note:* If you *DO* want to use this product with NodeJS then head over to [the NodeJS instructions](https://github.com/second-state/es-ss.js#node-install)
 
-```bash
-npm install es-ss.js
-```
-## Import
-Once installed, please require it inside your software's appropriate application (js) file, as shown below.
+Let's get started and instantiate a new ESSS object.
 
 ```javascript
-let esss = require('./es-ss');  
-let ESSS = esss.ESSS;
+var esss = new ESSS("https://ethereum.search.secondstate.io")
 ```
-## Set provider
-You can then create an instantiation of the es-js software by passing in the provider (passing in any single working smart contract search engine provider URL as part of the instantiation). Here are some examples.
-
-```javascript
-// Ethereum (ETH) MainNet 
-let searchEngineProvider = new ESSS('https://ethereum.search.secondstate.io');
-
-// Ethereum Classic (ETC) MainNet
-//let searchEngineProvider = new ESSS('https://ethereum-classic.search.secondstate.io');
-
-// CyberMiles (CMT) MainNet
-//let searchEngineProvider = new ESSS('https://cmt.search.secondstate.io');
-
-// CyberMiles (CMT) TestNet
-//let searchEngineProvider = new ESSS('https://cmt-testnet.search.secondstate.io');
-
-// SecondState DevChain
-//let searchEngineProvider = new ESSS('https://devchain-es.secondstate.io/');
-```
-You can now call each of the available functions as shown below in the *Usage* section.
 
 # Usage Examples
-The following are all using the `EthMainNet` provider from above. Please ensure to use the correct provider for your application.
+
+All of the following commands can be called using traditional client-side HTTP/JS code).
+
+## Call functions
+
+instance.function(args)
 
 ### Describe an item using its transaction hash
 Create variables to be passed into the `submitAbi` function.
@@ -48,9 +28,9 @@ var txHash = 'hash of transaction which deployed contract' //0x1234
 
 Call the function
 ```javascript
-var description = searchEngineProvider.describeUsingTx(txHash);
-description.then(function(result) {
-    console.log("Result is " + result);
+esss.describeUsingTx(txHash)
+.then(function(result) {
+    console.log(result);
   })
   .catch(function() {
     console.log("Error");
@@ -67,18 +47,18 @@ var txHash = 'hash of transaction which deployed contract' //0x1234
 
 Call the function
 ```javascript
-var abiSubmission = searchEngineProvider.submitAbi(abi, txHash);
-abiSubmission.then(function(result) {
-    console.log("Result is " + result);
+esss.submitAbi(abi, txHash)
+.then(function(result) {
+    console.log(result);
   })
   .catch(function() {
     console.log("Error");
   });
 ```
 
-### Submit many ABIs (in conjuntion with a single Tx hash) for indexing
-Create variables to be passed into the `submitManyAbis` function.
 
+### Submit many ABIs and a single hash for indexing
+Create variables to be passed into the `submitManyAbis` function.
 
 ```javascript
 var abis = {'abis': {0: {'abi': [valid abi string goes here]}, 1: {'abi': [valid abi string goes here]}}}
@@ -87,9 +67,9 @@ var txHash = 'hash of transaction which deployed contract' //0x1234
 
 Call the function
 ```javascript
-var abiSubmission = searchEngineProvider.submitManyAbis(abis, txHash);
-abiSubmission.then(function(result) {
-    console.log("Result is " + result);
+esss.submitManyAbis(abis, txHash)
+.then(function(result) {
+    console.log(result);
   })
   .catch(function() {
     console.log("Error");
@@ -105,9 +85,9 @@ var abi = '[valid abi goes here]'
 
 Call the function
 ```javascript
-var abiSha = searchEngineProvider.shaAbi(abi);
-abiSha.then(function(result) {
-    console.log("Result is " + result);
+esss.shaAbi(abi)
+.then(function(result) {
+    console.log(JSON.parse(result)["abiSha3"])
   })
   .catch(function() {
     console.log("Error");
@@ -124,14 +104,14 @@ This returns any and all items in the index which have the canonical determinist
 
 Call the function by passing in the Sha3 of the ABI.
 ```javascript
-abiHash = '0x4722ca26325a45bfad1538b8a73d341548cfa007765f81071e3b0f966adcedff';
-var abiSearch = searchEngineProvider.searchUsingAbi(abiHash);
-abiSearch.then(function(result) {
-    console.log("Result is " + result);
-  })
-  .catch(function() {
-    console.log("Error");
-  });
+abi = '0x4722ca26325a45bfad1538b8a73d341548cfa007765f81071e3b0f966adcedff';
+esss.searchUsingAbi(abi)
+    .then(function(result) {
+        console.log(result)
+    })
+    .catch(function() {
+        console.log("Error");
+    });
 ```
 
 Returns (many of) the following data structures in a list format i.e. `[{"TxHash":...}, {{"TxHash":...}}, {{"TxHash":...}}]`
@@ -177,9 +157,9 @@ data["keywords"] = ["cmt", "CyberMiles", "token"]
 
 Call the function by passing in the JSON
 ```javascript
-var keywordSearch = searchEngineProvider.searchUsingKeywords(data);
-keywordSearch.then(function(result) {
-    console.log("Result is " + result);
+esss.searchUsingKeywords(data)
+.then(function(result) {
+    console.log(result);
   })
   .catch(function() {
     console.log("Error");
@@ -196,16 +176,12 @@ Prepare the list as JSON
 data = {}
 data["keywords"] = ["cmt", "CyberMiles", "token"]
 ```
-Prepare the abiHash as a string
-```javascript
-abiHash = '0x4722ca26325a45bfad1538b8a73d341548cfa007765f81071e3b0f966adcedff';
-```
 Call the function by passing in the Sha3 of the ABI and the list of keywords.
 
 ```javascript
-var keywordAbiSearch = searchEngineProvider.searchUsingKeywordsAndAbi(abiHash, data);
-keywordAbiSearch.then(function(result) {
-    console.log("Result is " + result);
+esss.searchUsingKeywordsAndAbi("0x2b5710e2cf7eb7c9bd50bfac8e89070bdfed6eb58f0c26915f034595e5443286", data)
+.then(function(result) {
+    console.log(result);
   })
   .catch(function() {
     console.log("Error");
@@ -217,8 +193,8 @@ Returns data in the same format as shown above.
 ### Get ABI count
 This returns the number of indexed ABIs
 ```javascript
-var abiCount = searchEngineProvider.getAbiCount();
-abiCount.then(function(result) {
+esss.getAbiCount()
+.then(function(result) {
     console.log("Result is " + result);
   })
   .catch(function() {
@@ -227,14 +203,14 @@ abiCount.then(function(result) {
 ```
 Returns a single integer
 ```
-105
+3
 ```
 
 ### Get all count
 This returns the number of contracts which are known (regardless of whether the smart contract search engine has an ABI which is associated with that contract)
 ```javascript
-var allCount = searchEngineProvider.getAllCount();
-allCount.then(function(result) {
+esss.getAllCount()
+.then(function(result) {
     console.log("Result is " + result);
   })
   .catch(function() {
@@ -243,22 +219,25 @@ allCount.then(function(result) {
 ```
 Returns a single integer
 ```
-953457
+333
 ```
 
 ### Get contract count
 This returns the number of contracts which have at least one ABI associated with them
 ```javascript
-var contractCount = searchEngineProvider.getContractCount();
-contractCount.then(function(result) {
+esss.getContractCount()
+.then(function(result) {
     console.log("Result is " + result);
   })
   .catch(function() {
     console.log("Error");
   });
-
 ```
 Returns a single integer
 ```
-24501
+33
 ```
+
+
+
+
