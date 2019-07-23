@@ -26,6 +26,11 @@ function ESSS(_searchEngineBaseUrl) {
         return new Promise(function(resolve, reject) {
             XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
             var xhr = new XMLHttpRequest();
+            xhr.setRequestHeader("Content-Type", "application/json");
+            //data
+            var data = {};
+            data["contractAddress"] = _contractAddress;
+            data["qualityScore"] = _qualityScore;
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
@@ -35,7 +40,7 @@ function ESSS(_searchEngineBaseUrl) {
             };
             xhr.onerror = reject;
             xhr.open("POST", url, true);
-                xhr.send(JSON.stringify());
+            xhr.send(JSON.stringify(data));
             });
     }
 
