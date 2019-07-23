@@ -26,6 +26,7 @@ function ESSS(_searchEngineBaseUrl) {
         return new Promise(function(resolve, reject) {
             XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
             var xhr = new XMLHttpRequest();
+            xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/json");
             //data
             var data = {};
