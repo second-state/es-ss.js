@@ -82,6 +82,30 @@ function ESSS(_searchEngineBaseUrl) {
         });
     }
 
+    this.describeUsingTx = function(_transactionHash) {
+        let url = this.getSearchEngineBaseUrl() + "/api/describe_using_tx";
+        return new Promise(function(resolve, reject) {
+        XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        //data
+        var data = {};
+        data["hash"] = _transactionHash;
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(xhr.responseText);
+                    }
+                }
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(data));
+        });
+    }
+
     this.submitAbi = function(_abi, _transactionHash) {
         let url = this.getSearchEngineBaseUrl() + "/api/submit_abi";
         return new Promise(function(resolve, reject) {
@@ -92,6 +116,31 @@ function ESSS(_searchEngineBaseUrl) {
         //data
         var data = {};
         data["abi"] = _abi;
+        data["hash"] = _transactionHash;
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(xhr.responseText);
+                    }
+                }
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(data));
+        });
+    }
+
+    this.submitManyAbis = function(_abis, _transactionHash) {
+        let url = this.getSearchEngineBaseUrl() + "/api/submit_many_abis";
+        return new Promise(function(resolve, reject) {
+        XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        //data
+        var data = {};
+        data["abis"] = _abis;
         data["hash"] = _transactionHash;
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {
