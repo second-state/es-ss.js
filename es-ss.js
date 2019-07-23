@@ -21,6 +21,24 @@ function ESSS(_searchEngineBaseUrl) {
         this.searchEngineBaseUrl = _searchEngineBaseUrl;
     }
 
+    this.updateQualityScore = function(_contractAddress, _qualityScore) {
+        let url = this.getSearchEngineBaseUrl() + "/api/es_update_quality";
+        return new Promise(function(resolve, reject) {
+            XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(xhr.responseText);
+                    }
+                } 
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+                xhr.send(JSON.stringify());
+            });
+    }
+
     this.getAbiCount = function() {
         let url = this.getSearchEngineBaseUrl() + "/api/es_get_abi_count";
         return new Promise(function(resolve, reject) {
