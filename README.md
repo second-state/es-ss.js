@@ -32,7 +32,7 @@ let searchEngineProvider = new ESSS('https://ethereum.search.secondstate.io');
 //let searchEngineProvider = new ESSS('https://cmt-testnet.search.secondstate.io');
 
 // SecondState DevChain
-//let searchEngineProvider = new ESSS('https://devchain-es.secondstate.io/');
+//let searchEngineProvider = new ESSS('https://devchain-es.secondstate.io');
 ```
 You can now call each of the available functions as shown below in the *Usage* section.
 
