@@ -12,7 +12,7 @@ npm install es-ss.js
 Once installed, please require it inside your software's appropriate application (js) file, as shown below.
 
 ```javascript
-let esss = require('./es-ss');  
+let esss = require("es-ss.js"); 
 let ESSS = esss.ESSS;
 ```
 ## Set provider
