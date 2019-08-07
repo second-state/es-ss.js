@@ -1,7 +1,11 @@
+var esss = require('./es-ss');
+
+module.exports = esss
+
 /* Example Usage below
 
 // Importing into your application
-let esss = require('./es-ss');  
+let esss = require("es-ss.js");  
 let ESSS = esss.ESSS;
 
 //Examples of setting the provider 
