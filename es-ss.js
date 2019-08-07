@@ -286,7 +286,7 @@ function ESSS(_searchEngineBaseUrl) {
         }
         string = string + '"'
         var data = '{"query":{"bool":{"must":[{"match":{"abiShaList":"' + _abiHash + '"}},{"query_string":{"query":' + string + '}}]}}}';
-        console.log(data);
+        //console.log(data);
             //execution
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {

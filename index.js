@@ -1,3 +1,5 @@
+/* Example Usage below
+
 // Importing into your application
 let esss = require('./es-ss');  
 let ESSS = esss.ESSS;
@@ -98,3 +100,4 @@ keywordAbiSearch.then(function(result) {
   .catch(function() {
     console.log("Error");
   });
+*/
