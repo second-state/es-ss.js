@@ -55,6 +55,17 @@ qualityScoreResult.then(function(result) {
     console.log("Error");
   });
 ```
+### Get the most recent indexed block number
+
+```javascript
+var number = searchEngineProvider.getMostRecentIndexedBlockNumber();
+number.then(function(result) {
+    console.log("Most recent block number is " + result);
+  })
+  .catch(function() {
+    console.log("Error");
+});
+```
 
 ### Describe an item using its transaction hash
 Create variables to be passed into the `submitAbi` function.
