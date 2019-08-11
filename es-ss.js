@@ -223,6 +223,31 @@ function ESSS(_searchEngineBaseUrl) {
         });
     }
 
+    this.searchUsingAddress = function(_address) {
+        let url = this.getSearchEngineBaseUrl() + "/api/es_search";
+        return new Promise(function(resolve, reject) {
+            // request initialisation
+            XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            //data
+            var data = '{"query":{"bool":{"must":[{"match":{"contractAddress":"' + _address + '"}}]}}}'
+            //execution
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(xhr.responseText);
+                    }
+                }
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(data);
+        });
+    }
+
     this.searchUsingAbi = function(_abiHash) {
         let url = this.getSearchEngineBaseUrl() + "/api/es_search";
         return new Promise(function(resolve, reject) {
