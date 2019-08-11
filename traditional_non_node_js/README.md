@@ -38,6 +38,22 @@ esss.updateQualityScore(contractAddress, qualityScore)
   });
 ```
 
+### Get most recent indexed block number
+This returns the block number of the block which has the most recent contract in it
+```javascript
+esss.getMostRecentIndexedBlockNumber()
+.then(function(result) {
+    console.log("Result is " + result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+```
+Returns a single integer
+```
+2098765
+```
+
 ### Describe an item using its transaction hash
 Create variables to be passed into the `submitAbi` function.
 
@@ -116,6 +132,21 @@ esss.shaAbi(abi)
 Returns hash like this
 ```javascript
 0x4722ca26325a45bfad1538b8a73d341548cfa007765f81071e3b0f966adcedff
+```
+
+### Search using Address
+This returns an indexed item based on its contract address
+
+Call the function by passing in the address of the contract
+```javascript
+address = '0xfa390f18c916ef2ac3c060920e7dd509baf94eea';
+esss.searchUsingAddress(address)
+    .then(function(result) {
+        console.log(result)
+    })
+    .catch(function() {
+        console.log("Error");
+    });
 ```
 
 ### Search using ABI 
