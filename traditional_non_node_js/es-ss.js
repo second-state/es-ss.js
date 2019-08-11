@@ -39,8 +39,8 @@ class ESSS {
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        jsonResponse = JSON.parse(xhr.responseText);
-                        blockNumber = jsonResponse["aggregations"]["most_recent_block"]["value"]
+                        var jsonResponse = JSON.parse(xhr.responseText);
+                        var blockNumber = jsonResponse["aggregations"]["most_recent_block"]["value"]
                         resolve(blockNumber);
                     }
                 }
@@ -59,8 +59,8 @@ class ESSS {
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        jsonResponse = JSON.parse(xhr.responseText);
-                        abiCount = jsonResponse["hits"]["total"]
+                        var jsonResponse = JSON.parse(xhr.responseText);
+                        var abiCount = jsonResponse["hits"]["total"]
                         resolve(abiCount);
                     }
                 }
@@ -79,8 +79,8 @@ class ESSS {
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        jsonResponse = JSON.parse(xhr.responseText);
-                        allCount = jsonResponse["hits"]["total"]
+                        var jsonResponse = JSON.parse(xhr.responseText);
+                        var allCount = jsonResponse["hits"]["total"]
                         resolve(allCount);
                     }
                 }
@@ -101,8 +101,8 @@ class ESSS {
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        jsonResponse = JSON.parse(xhr.responseText);
-                        allCount = jsonResponse["hits"]["total"]
+                        var jsonResponse = JSON.parse(xhr.responseText);
+                        var allCount = jsonResponse["hits"]["total"]
                         resolve(allCount);
                     }
                 }
