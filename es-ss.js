@@ -21,6 +21,26 @@ function ESSS(_searchEngineBaseUrl) {
         this.searchEngineBaseUrl = _searchEngineBaseUrl;
     }
 
+    this.getMostRecentIndexedBlockNumber = function() {
+        let url = this.getSearchEngineBaseUrl() + "/api/most_recent_indexed_block_number";
+        return new Promise(function(resolve, reject) {
+            XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        jsonResponse = JSON.parse(xhr.responseText);
+                        blockNumber = jsonResponse["aggregations"]["most_recent_block"]["value"]
+                        resolve(blockNumber);
+                    }
+                }
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+            xhr.send(JSON.stringify());
+        });
+    }
+
     this.updateQualityScore = function(_contractAddress, _qualityScore) {
         let url = this.getSearchEngineBaseUrl() + "/api/es_update_quality";
         return new Promise(function(resolve, reject) {
