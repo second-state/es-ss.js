@@ -146,6 +146,20 @@ Returns hash like this
 ```javascript
 0x4722ca26325a45bfad1538b8a73d341548cfa007765f81071e3b0f966adcedff
 ```
+### Search using an Address
+This returns an indexed item based on its contract address
+
+Call the function by passing in the address of the smart contract
+```javascript
+address = '0xfA390F18C916EF2aC3C060920e7DD509baf94EEa';
+var addressSearch = searchEngineProvider.searchUsingAddress(address);
+addressSearch.then(function(result) {
+    console.log("Result is " + result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+```
 
 ### Search using ABI 
 This returns any and all items in the index which have the canonical deterministic Sha3 hash which we calculated in the previous step.
