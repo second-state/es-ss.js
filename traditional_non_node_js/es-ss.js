@@ -30,6 +30,27 @@ class ESSS {
         });
     }
 
+    getMostRecentIndexedBlockNumber() {
+        var url = this.searchEngineBaseUrl + "/api/most_recent_indexed_block_number";
+        return new Promise(function(resolve, reject) {
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        jsonResponse = JSON.parse(xhr.responseText);
+                        blockNumber = jsonResponse["aggregations"]["most_recent_block"]["value"]
+                        resolve(blockNumber);
+                    }
+                }
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+            xhr.send(JSON.stringify());
+        });
+    }
+
     getAbiCount() {
         var url = this.searchEngineBaseUrl + "/api/es_get_abi_count";
         return new Promise(function(resolve, reject) {
