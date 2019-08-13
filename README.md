@@ -39,6 +39,23 @@ You can now call each of the available functions as shown below in the *Usage* s
 # Usage Examples
 The following are all using the `EthMainNet` provider from above. Please ensure to use the correct provider for your application.
 
+### Update the indexed state of a contract at a particular address
+```javascript
+var abi = '[valid abi goes here]'
+var contractAddress = '0x1234...56789
+```
+
+Call the function
+```javascript
+var indexingResult = searchEngineProvider.updateStateOfContractAddress(abi, contractAddress);
+indexingResult.then(function(result) {
+    console.log("Result is " + result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+```
+
 ### Update the quality score field
 ```javascript
 var contractAddress = '0x12345...678'
