@@ -19,6 +19,25 @@ All of the following commands can be called using traditional client-side HTTP/J
 
 instance.function(args)
 
+
+### Update the state of a contract at a particular address
+Create variables to be passed into the `updateQualityScore` function.
+
+```javascript
+var abi = '[valid abi goes here]'
+var contractAddress = '0x1234...56789
+```
+
+Call the function
+```javascript
+esss.updateStateOfContractAddress(abi, contractAddress)
+.then(function(result) {
+    console.log(result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+```
 ### Update the quality field in ES
 Create variables to be passed into the `updateQualityScore` function.
 
