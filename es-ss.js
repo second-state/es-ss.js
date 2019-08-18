@@ -150,6 +150,30 @@ function ESSS(_searchEngineBaseUrl) {
         });
     }
 
+    this.confirmDeployment = function(_transactionHash) {
+        let url = this.getSearchEngineBaseUrl() + "/api/confirm_deployment";
+        return new Promise(function(resolve, reject) {
+        XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        //data
+        var data = {};
+        data["hash"] = _transactionHash;
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(xhr.responseText);
+                    }
+                }
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(data));
+        });
+    }
+
     this.describeUsingTx = function(_transactionHash) {
         let url = this.getSearchEngineBaseUrl() + "/api/describe_using_tx";
         return new Promise(function(resolve, reject) {
