@@ -102,6 +102,19 @@ description.then(function(result) {
   });
 ```
 
+Call the function using different syntax
+```
+searchEngineProvider.confirmDeployment(txHash).then((theResult) => {
+    var r = JSON.parse(theResult);
+    console.log(r);
+})
+```
+
+Returns data like this
+```
+{ response: '0x69962D233c454b3f958fA5bc08f61FD252A01E9a' }
+```
+
 ### Describe an item using its transaction hash
 Create variables to be passed into the `describeUsingTx` function.
 
