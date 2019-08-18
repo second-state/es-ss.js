@@ -84,8 +84,26 @@ number.then(function(result) {
 });
 ```
 
+### Check to see if a contract has been deployed using the respective transaction hash
+Create the variable to be passed in to the confirmDeployment function
+
+```javascript
+var txHash = 'hash of transaction which is perhaps not an already deployed contract' //0x1234
+```
+
+Call the function
+```javascript
+var description = searchEngineProvider.confirmDeployment(txHash);
+description.then(function(result) {
+    console.log("Result is " + result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+```
+
 ### Describe an item using its transaction hash
-Create variables to be passed into the `submitAbi` function.
+Create variables to be passed into the `describeUsingTx` function.
 
 ```javascript
 var txHash = 'hash of transaction which deployed contract' //0x1234
