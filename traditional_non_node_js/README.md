@@ -73,6 +73,23 @@ Returns a single integer
 2098765
 ```
 
+### Check to see if a transaction has has resolved into a deployed contract yet
+Create the variable to be passed into the confirmDeployment function
+```javascript
+var txHash = 'hash which may or may not have resulted in a deployed contract' //0x1234
+```
+
+Call the function
+```javascript
+esss.confirmDeployment(txHash)
+.then(function(result) {
+    console.log(result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+```
+
 ### Describe an item using its transaction hash
 Create variables to be passed into the `submitAbi` function.
 
