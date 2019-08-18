@@ -90,6 +90,19 @@ esss.confirmDeployment(txHash)
   });
 ```
 
+Returns data like this if contract address is valid
+```
+{
+  "response": "0x69962D233c454b3f958fA5bc08f61FD252A01E9a"
+}
+```
+Returns data like this if contract address is None 
+```
+{
+  "response": "None"
+}
+```
+
 ### Describe an item using its transaction hash
 Create variables to be passed into the `submitAbi` function.
 
