@@ -55,23 +55,6 @@ indexingResult.then(function(result) {
     console.log("Error");
   });
 ```
-
-### Update the quality score field
-```javascript
-var contractAddress = '0x12345...678'
-var qualityScore = '50' //Must be a number between 0 and 100
-```
-
-Call the function
-```javascript
-var qualityScoreResult = searchEngineProvider.updateQualityScore(contractAddress, qualityScore);
-qualityScoreResult.then(function(result) {
-    console.log("Result is " + result);
-  })
-  .catch(function() {
-    console.log("Error");
-  });
-```
 ### Get the most recent indexed block number
 
 ```javascript
@@ -351,4 +334,21 @@ contractCount.then(function(result) {
 Returns a single integer
 ```
 24501
+```
+
+### Update the quality score field
+```javascript
+var contractAddress = '0x12345...678'
+var qualityScore = '50' //Must be a number between 0 and 100
+```
+
+Call the function
+```javascript
+var qualityScoreResult = searchEngineProvider.updateQualityScore(contractAddress, qualityScore);
+qualityScoreResult.then(function(result) {
+    console.log("Result is " + result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
 ```
