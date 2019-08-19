@@ -4,6 +4,7 @@ class ESSS {
     constructor(_searchEngineBaseUrl) {
         this.searchEngineBaseUrl = _searchEngineBaseUrl;
         console.log("Search Engine Base URL set to: " + this.searchEngineBaseUrl);
+        this.indexStatus = {};
     }
 
     updateStateOfContractAddress(_abi, _address) {
