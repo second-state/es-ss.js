@@ -57,6 +57,22 @@ esss.updateQualityScore(contractAddress, qualityScore)
   });
 ```
 
+### Get block interval as per the smart contract search engine config
+This returns the block interval setting from the search engine's config. 
+```javascript
+esss.getBlockInterval()
+.then(function(result) {
+    console.log("Result is " + result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+```
+Returns a single integer
+```
+2098765
+```
+
 ### Get most recent indexed block number
 This returns the block number of the block which has the most recent contract in it
 ```javascript
