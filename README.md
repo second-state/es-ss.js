@@ -70,9 +70,12 @@ number.then(function(result) {
 Call the function using different syntax
 ```
 searchEngineProvider.getBlockInterval().then((theResult) => {
-    var r = JSON.parse(theResult);
-    console.log(r);
+    console.log(theResult);
 })
+```
+Returns single int
+```
+1
 ```
 
 ### Get the most recent indexed block number
