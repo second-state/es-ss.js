@@ -55,6 +55,26 @@ indexingResult.then(function(result) {
     console.log("Error");
   });
 ```
+
+### Get the block interval, as per the smart contract search engine config
+
+```javascript
+var number = searchEngineProvider.getBlockInterval();
+number.then(function(result) {
+    console.log("Most recent block number is " + result);
+  })
+  .catch(function() {
+    console.log("Error");
+});
+```
+Call the function using different syntax
+```
+searchEngineProvider.getBlockInterval().then((theResult) => {
+    var r = JSON.parse(theResult);
+    console.log(r);
+})
+```
+
 ### Get the most recent indexed block number
 
 ```javascript
