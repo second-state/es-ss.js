@@ -70,7 +70,7 @@ esss.getBlockInterval()
 ```
 Returns a single integer
 ```
-2098765
+1
 ```
 
 ### Get most recent indexed block number
