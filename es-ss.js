@@ -1,12 +1,18 @@
 function ESSS(_searchEngineBaseUrl) {
     this.searchEngineBaseUrl = _searchEngineBaseUrl;
-    
-    // Search Engine Base URL (Please include protocol. Please do not include trailing slash)
-    // Example: https://search-engine.com
-    /*constructor(_searchEngineBaseUrl) {
-        this.searchEngineBaseUrl = _searchEngineBaseUrl;
-        console.log("Search Engine Base URL set to: " + this.searchEngineBaseUrl);
-    }*/
+    this.indexStatus = {};
+
+    this.setIndexStatusToTrue = function(_transactionHash){
+        this.indexStatus[_transactionHash] = true;
+    }
+
+    this.setIndexStatusToFalse = function(_transactionHash){
+        this.indexStatus[_transactionHash] = false;
+    }
+
+    this.getIndexStatus = function(_transactionHash){
+        return this.indexStatus[_transactionHash];
+    }
 
     this.describe = function(){
         let description = "Provider: " + this.searchEngineBaseUrl;

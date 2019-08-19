@@ -7,6 +7,18 @@ class ESSS {
         this.indexStatus = {};
     }
 
+    setIndexStatusToTrue(_transactionHash){
+        this.indexStatus[_transactionHash] = true;
+    }
+
+    setIndexStatusToFalse(_transactionHash){
+        this.indexStatus[_transactionHash] = false;
+    }
+
+    getIndexStatus(_transactionHash){
+        return this.indexStatus[_transactionHash];
+    }
+
     updateStateOfContractAddress(_abi, _address) {
         var url = this.searchEngineBaseUrl + "/api/update_state_of_contract_address";
         return new Promise(function(resolve, reject) {
