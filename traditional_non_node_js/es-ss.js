@@ -88,6 +88,24 @@ class ESSS {
         });
     }
 
+    getBlockInterval() {
+        var url = this.searchEngineBaseUrl + "/api/get_block_interval";
+        return new Promise(function(resolve, reject) {
+
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(xhr.responseText);
+                    }
+                }
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+            xhr.send(JSON.stringify());
+        });
+    }
+
     getAbiCount() {
         var url = this.searchEngineBaseUrl + "/api/es_get_abi_count";
         return new Promise(function(resolve, reject) {
