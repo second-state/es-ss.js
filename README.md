@@ -32,7 +32,7 @@ let searchEngineProvider = new ESSS('https://eth.search.secondstate.io');
 //let searchEngineProvider = new ESSS('https://testnet.cmt.search.secondstate.io');
 
 // SecondState DevChain
-//let searchEngineProvider = new ESSS('https://devchain.ss.secondstate.io');
+//let searchEngineProvider = new ESSS('https://devchain.ss.search.secondstate.io');
 ```
 You can now call each of the available functions as shown below in the *Usage* section.
 
