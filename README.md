@@ -20,19 +20,19 @@ You can then create an instantiation of the es-js software by passing in the pro
 
 ```javascript
 // Ethereum (ETH) MainNet 
-let searchEngineProvider = new ESSS('https://ethereum.search.secondstate.io');
+let searchEngineProvider = new ESSS('https://eth.search.secondstate.io');
 
 // Ethereum Classic (ETC) MainNet
-//let searchEngineProvider = new ESSS('https://ethereum-classic.search.secondstate.io');
+//let searchEngineProvider = new ESSS('https://etc.search.secondstate.io');
 
 // CyberMiles (CMT) MainNet
 //let searchEngineProvider = new ESSS('https://cmt.search.secondstate.io');
 
 // CyberMiles (CMT) TestNet
-//let searchEngineProvider = new ESSS('https://cmt-testnet.search.secondstate.io');
+//let searchEngineProvider = new ESSS('https://testnet.cmt.search.secondstate.io');
 
 // SecondState DevChain
-//let searchEngineProvider = new ESSS('https://devchain-es.secondstate.io');
+//let searchEngineProvider = new ESSS('https://devchain.ss.secondstate.io');
 ```
 You can now call each of the available functions as shown below in the *Usage* section.
 
