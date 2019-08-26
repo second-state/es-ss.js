@@ -8,7 +8,20 @@ Blockchain data services protocol library
 Let's get started and instantiate a new ESSS object.
 
 ```javascript
-var esss = new ESSS("https://ethereum.search.secondstate.io")
+// Ethereum (ETH) MainNet 
+var esss = new ESSS('https://eth.search.secondstate.io');
+
+// Ethereum Classic (ETC) MainNet
+//var esss = new ESSS('https://etc.search.secondstate.io');
+
+// CyberMiles (CMT) MainNet
+//var esss = new ESSS('https://cmt.search.secondstate.io');
+
+// CyberMiles (CMT) TestNet
+//var esss = new ESSS('https://testnet.cmt.search.secondstate.io');
+
+// SecondState DevChain
+//var esss = new ESSS('https://devchain.ss.search.secondstate.io');
 ```
 
 # Usage Examples
