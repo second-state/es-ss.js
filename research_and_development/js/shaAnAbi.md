@@ -1,5 +1,7 @@
 # Background
-"Cryptographic operations like hashing and signing requires that the original data does not change during serialization or parsing [1]". Unlike Python, which facilatates key ordering of JSON objects during stringification, Javascript requires additional work to achieve this same feature.
+"Cryptographic operations like hashing and signing requires that the original data does not change during serialization or parsing [1]". Unlike Python, which facilatates key ordering of JSON objects during stringification, Javascript requires additional work to achieve this same feature. 
+
+In short, Javascript outputs keys of a JSON object in the same order that they were in when parsed. Ordering of the first level keys i.e. using `_jsonObject.sort()` are lost when the `JSON.stringify(_jsonObject)` function is called.
 
 # Application
 The SecondState [Smart Contract Search Engine](https://github.com/second-state/smart-contract-search-engine) (SCSE) requires smart contract ABIs to be deterministically hashed. This allows individual smart contracts to be identified in the indices. At present Python is employed to achieve this task. Executing the Python requires a client server round trip.
