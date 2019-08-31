@@ -73,7 +73,7 @@ Modified source code
 
 As you can see here, the ABI changes when the position of the functions move around in the source code.
 
-#Appendix
+# Appendix
 ## Vyper ERC20 source code - original
 
 ```
