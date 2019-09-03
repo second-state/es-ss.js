@@ -54,9 +54,6 @@ function ESSS(_searchEngineBaseUrl) {
             var xhr = new XMLHttpRequest();
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/json");
-            //data
-            var data = {};
-            data["myQuery"] = _query;
             xhr.onload = function(e) {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
@@ -66,7 +63,7 @@ function ESSS(_searchEngineBaseUrl) {
             };
             xhr.onerror = reject;
             xhr.open("POST", url, true);
-            xhr.send(JSON.stringify(data));
+            xhr.send(JSON.stringify(_query));
             });
     }
 
