@@ -32,7 +32,23 @@ All of the following commands can be called using traditional client-side HTTP/J
 
 instance.function(args)
 
+### Query using native Elasticsearch syntax
 
+```javascript
+q = { query: { match_all: {} } }
+```
+
+Call the function
+
+```
+esss.queryUsingDsl(q)
+.then(function(result) {
+    console.log(result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+```
 ### Update the state of a contract at a particular address
 Create variables to be passed into the `updateQualityScore` function.
 
