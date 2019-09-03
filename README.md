@@ -39,6 +39,23 @@ You can now call each of the available functions as shown below in the *Usage* s
 # Usage Examples
 The following are all using the `EthMainNet` provider from above. Please ensure to use the correct provider for your application.
 
+### Search using native Elasticsearch DSL
+```javascript
+var q = { query: { match_all: {} } }
+
+```
+
+Call the function
+```javascript
+var indexingResult = searchEngineProvider.queryUsingDsl(q);
+indexingResult.then(function(result) {
+    console.log("Result is " + result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+```
+
 ### Update the indexed state of a contract at a particular address
 ```javascript
 var abi = '[valid abi goes here]'
