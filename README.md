@@ -45,7 +45,7 @@ var q = { query: { match_all: {} } }
 ```
 Or perhaps, once you have a contract address from the above you can practice just returning one record (at contract adddress 0x...)
 ```
-q = {"query":{"bool":{"must":[{"match":{"contractAddress":"0x6A4eB89b9d0519F6e344D36a70b4450193bd9C78"}}]}}}
+var q = {"query":{"bool":{"must":[{"match":{"contractAddress":"0x6A4eB89b9d0519F6e344D36a70b4450193bd9C78"}}]}}}
 ```
 
 Call the function
