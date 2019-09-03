@@ -47,8 +47,8 @@ var q = { query: { match_all: {} } }
 
 Call the function
 ```javascript
-var indexingResult = searchEngineProvider.queryUsingDsl(q);
-indexingResult.then(function(result) {
+var searchResult = searchEngineProvider.queryUsingDsl(q);
+searchResult.then(function(result) {
     console.log("Result is " + result);
   })
   .catch(function() {
