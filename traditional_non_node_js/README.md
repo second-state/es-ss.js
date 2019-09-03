@@ -35,7 +35,11 @@ instance.function(args)
 ### Query using native Elasticsearch syntax
 
 ```javascript
-q = { query: { match_all: {} } }
+var q = { query: { match_all: {} } }
+```
+Match just one address
+```
+var q = {"query":{"bool":{"must":[{"match":{"contractAddress":"0x6A4eB89b9d0519F6e344D36a70b4450193bd9C78"}}]}}}
 ```
 
 Call the function
