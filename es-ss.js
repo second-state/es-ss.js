@@ -315,6 +315,28 @@ function ESSS(_searchEngineBaseUrl) {
         });
     }
 
+    this.sortAbi = function(_abi) {
+        let url = this.getSearchEngineBaseUrl() + "/api/sort_an_abi";
+        return new Promise(function(resolve, reject) {
+            XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+            var xhr = new XMLHttpRequest();
+            var data = {};
+            data["abi"] = _abi;
+            
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(xhr.responseText);
+                    }
+                }
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(data));
+        });
+    }
+
     this.searchUsingAddress = function(_address) {
         let url = this.getSearchEngineBaseUrl() + "/api/es_search";
         return new Promise(function(resolve, reject) {
