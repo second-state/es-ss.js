@@ -75,6 +75,28 @@ esss.updateStateOfContractAddress(abi, contractAddress)
     console.log("Error");
   });
 ```
+The above code will return a response object like this
+
+```
+{ "response": "true" }
+```
+or this
+```
+{ "response": "false" }
+```
+You can use this response object to change how the DApp frontend responds to the end user.
+For example.
+```javascript
+esss.updateStateOfContractAddress(JSON.stringify(abi), instance.address).then((theStatus) => {
+    console.log(JSON.parse(theStatus).response);
+    if (JSON.parse(theStatus).response == "true") {
+        // Do something 
+    } else {
+        console.log(JSON.parse(theStatus).response);
+        // Do something else
+    }
+});
+```
 ### Update the quality field in ES
 Create variables to be passed into the `updateQualityScore` function.
 
