@@ -78,6 +78,29 @@ indexingResult.then(function(result) {
   });
 ```
 
+The above code will return a response object like this
+
+```
+{ "response": "true" }
+```
+or this
+```
+{ "response": "false" }
+```
+You can use this response object to change how the DApp frontend responds to the end user.
+For example.
+```javascript
+searchEngineProvider.updateStateOfContractAddress(JSON.stringify(abi), instance.address).then((theStatus) => {
+    console.log(JSON.parse(theStatus).response);
+    if (JSON.parse(theStatus).response == "true") {
+        // Do something 
+    } else {
+        console.log(JSON.parse(theStatus).response);
+        // Do something else
+    }
+});
+```
+
 ### Get the block interval, as per the smart contract search engine config
 
 ```javascript
