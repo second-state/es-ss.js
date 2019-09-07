@@ -53,11 +53,15 @@ esss.queryUsingDsl(q)
     console.log("Error");
   });
 ```
-### Update the state of a contract at a particular address
-Create variables to be passed into the `updateQualityScore` function.
-
+### Update the indexed state of a contract at a particular address
+To update the indexed state of a contract in relation to all of its associated ABIs please set the `abi` var to the string keyword of `'all'`, as shown below.
 ```javascript
-var abi = '[valid abi goes here]'
+var abi = 'all'
+var contractAddress = '0x1234...56789
+```
+If you would only like to update the indexed state of a contract in relation to a specific ABI the you can add one ABI explicitly as a string, as shown below.
+```javascript
+var abi = '[{"valid": "abi", "goes": "here"}]'
 var contractAddress = '0x1234...56789
 ```
 
