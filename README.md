@@ -55,6 +55,47 @@ searchEngineProvider.queryUsingDsl(q).then((theResult) => {
 })
 ```
 
+### Express harvest an ABI
+
+```javascript
+var abiHash = '0xcc7a8e503d0020095a55ea78198edf358200c39452b6dbbd9a5d26f425cde6bf'
+var blockFloor = '4855734'
+```
+
+Call the function
+
+```
+searchEngineProvider.expressHarvestAnAbi(abiHash, blockFloor)
+.then(function(result) {
+    console.log(result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+```
+The above code will return a response object like this
+
+```
+{ "response": "true" }
+```
+or this
+```
+{ "response": "false" }
+```
+You can use this response object to change how the DApp frontend responds to the end user.
+For example.
+```javascript
+searchEngineProvider.expressHarvestAnAbi(abiHash, blockFloor).then((theStatus) => {
+    console.log(JSON.parse(theStatus).response);
+    if (JSON.parse(theStatus).response == "true") {
+        // Do something 
+    } else {
+        console.log(JSON.parse(theStatus).response);
+        // Do something else
+    }
+});
+```
+
 ### Update the indexed state of a contract at a particular address
 To update the indexed state of a contract in relation to all of its associated ABIs please set the `abi` var to the string keyword of `'all'`, as shown below.
 ```javascript
