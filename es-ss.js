@@ -67,6 +67,26 @@ function ESSS(_searchEngineBaseUrl) {
             });
     }
 
+    this.expressHarvestAnAbi = function(_abiHash) {
+        let url = this.getSearchEngineBaseUrl() + "/api/express_harvest_an_abi";
+        return new Promise(function(resolve, reject) {
+            XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(xhr.responseText);
+                    }
+                } 
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+            xhr.send(JSON.stringify(_query));
+            });
+    }
+
     this.updateStateOfContractAddress = function(_abi, _address) {
         let url = this.getSearchEngineBaseUrl() + "/api/update_state_of_contract_address";
         return new Promise(function(resolve, reject) {
