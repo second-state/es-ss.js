@@ -53,11 +53,53 @@ esss.queryUsingDsl(q)
     console.log("Error");
   });
 ```
+
+### Express harvest an ABI
+
+```javascript
+var abiHash = '0xcc7a8e503d0020095a55ea78198edf358200c39452b6dbbd9a5d26f425cde6bf'
+var blockFloor = '4855734'
+```
+
+Call the function
+
+```
+esss.expressHarvestAnAbi(abiHash, blockFloor)
+.then(function(result) {
+    console.log(result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+```
+The above code will return a response object like this
+
+```
+{ "response": "true" }
+```
+or this
+```
+{ "response": "false" }
+```
+You can use this response object to change how the DApp frontend responds to the end user.
+For example.
+```javascript
+esss.expressHarvestAnAbi(abiHash, blockFloor).then((theStatus) => {
+    console.log(JSON.parse(theStatus).response);
+    if (JSON.parse(theStatus).response == "true") {
+        // Do something 
+    } else {
+        console.log(JSON.parse(theStatus).response);
+        // Do something else
+    }
+});
+```
+
 ### Update the indexed state of a contract at a particular address
 To update the indexed state of a contract in relation to all of its associated ABIs please set the `abi` var to the string keyword of `'all'`, as shown below.
 ```javascript
 var abi = 'all'
-var contractAddress = '0x1234...56789
+var contractAddress = '0x1234...56789'
 ```
 If you would only like to update the indexed state of a contract in relation to a specific ABI the you can add one ABI explicitly as a string, as shown below.
 ```javascript
