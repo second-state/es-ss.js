@@ -67,7 +67,7 @@ function ESSS(_searchEngineBaseUrl) {
             });
     }
 
-    this.expressHarvestAnAbi = function(_abiHash) {
+    this.expressHarvestAnAbi = function(_abiHash, _blockFloor) {
         let url = this.getSearchEngineBaseUrl() + "/api/express_harvest_an_abi";
         return new Promise(function(resolve, reject) {
             XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
