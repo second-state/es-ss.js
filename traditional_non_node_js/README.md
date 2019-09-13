@@ -88,7 +88,7 @@ var q = {
           "range": {
             "timestamp": {
               "gte": lastYear,
-              "lt": today
+              "lt": now
             }
           }
         }
