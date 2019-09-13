@@ -64,6 +64,36 @@ Fetch transactions which were sent `from` a particular address
 var q = {"query":{"bool":{"must":[{"match":{"from":"0xA722A50b3B939aBec992753607B648277f781228"}}]}}}
 ```
 
+You can also query using numerical range. Here we look at all transactions send to an address over the last 365 days.
+
+For example, use the following query to get all transactions sent to address `0xA722A50b3B939aBec992753607B648277f781228` between `Fri, 13 Sep 2018 07:51:32 GMT` and `Fri, 13 Sep 2019 07:51:32 GMT`
+
+```
+var now = Math.floor(Date.now() / 1000)
+// 1568361092
+var yesterday =  Math.floor((Date.now() - (1*24*60*60*1000)) / 1000)
+// 1536825092
+var q = {
+  "query": {
+    "bool": {
+      "must": [{
+          "match": {
+            "to": "0xA722A50b3B939aBec992753607B648277f781228"
+          }
+        },
+        {
+          "range": {
+            "timestamp": {
+              "gte": yesterday,
+              "lt": today
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
 Call the function
 
 ```
@@ -103,7 +133,17 @@ The code above will return data like this
     }
   }
 ]
-  ```
+```
+Once the data is returned, the Ethereum timestamp can be easily converted to human readable data (for browser display) like this.
+
+```
+transactionsDate = new Date(1550878929 * 1000).toGMTString()
+```
+The above epoch to date translation will output a value like this
+```
+Sat Feb 23 2019 09:42:09 GMT+1000 (Australian Eastern Standard Time)
+```
+
 ### Express harvest an ABI
 
 ```javascript
