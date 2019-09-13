@@ -32,7 +32,7 @@ All of the following commands can be called using traditional client-side HTTP/J
 
 instance.function(args)
 
-### Query using native Elasticsearch syntax
+### Query contracts using native Elasticsearch syntax
 
 ```javascript
 var q = { query: { match_all: {} } }
@@ -46,6 +46,31 @@ Call the function
 
 ```
 esss.queryUsingDsl(q)
+.then(function(result) {
+    console.log(result);
+  })
+  .catch(function() {
+    console.log("Error");
+  });
+```
+### Query transactions using native Elasticsearch syntax
+
+Fetch transactions which were sent `to` a particular address
+```javascript
+var q = {"query":{"bool":{"must":[{"match":{"to":"0xA722A50b3B939aBec992753607B648277f781228"}}]}}}
+```
+Fetch transactions which were sent `from` a particular address
+```javascript
+var q = {"query":{"bool":{"must":[{"match":{"to":"0xA722A50b3B939aBec992753607B648277f781228"}}]}}}
+```
+```
+var q = 
+```
+
+Call the function
+
+```
+esss.queryTxUsingDsl(q)
 .then(function(result) {
     console.log(result);
   })
