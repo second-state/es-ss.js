@@ -71,8 +71,11 @@ For example, use the following query to get all transactions sent to address `0x
 ```
 var now = Math.floor(Date.now() / 1000)
 // 1568361092
-var yesterday =  Math.floor((Date.now() - (365*24*60*60*1000)) / 1000)
+var lastYear =  Math.floor((Date.now() - (365*24*60*60*1000)) / 1000)
 // 1536825092
+
+// You could also use yesterday
+// var yesterday =  Math.floor((Date.now() - (1*24*60*60*1000)) / 1000)
 var q = {
   "query": {
     "bool": {
@@ -84,7 +87,7 @@ var q = {
         {
           "range": {
             "timestamp": {
-              "gte": yesterday,
+              "gte": lastYear,
               "lt": today
             }
           }
