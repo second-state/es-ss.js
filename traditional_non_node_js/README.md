@@ -32,7 +32,7 @@ All of the following commands can be called using traditional client-side HTTP/J
 
 instance.function(args)
 
-### Query contracts using native Elasticsearch syntax
+### Query CONTRACTS using native Elasticsearch syntax
 
 ```javascript
 var q = { query: { match_all: {} } }
@@ -53,7 +53,7 @@ esss.queryUsingDsl(q)
     console.log("Error");
   });
 ```
-### Query transactions using native Elasticsearch syntax
+### Query TRANSACTIONS using native Elasticsearch syntax
 
 Fetch transactions which were sent `to` a particular address
 ```javascript
@@ -61,10 +61,7 @@ var q = {"query":{"bool":{"must":[{"match":{"to":"0xA722A50b3B939aBec992753607B6
 ```
 Fetch transactions which were sent `from` a particular address
 ```javascript
-var q = {"query":{"bool":{"must":[{"match":{"to":"0xA722A50b3B939aBec992753607B648277f781228"}}]}}}
-```
-```
-var q = 
+var q = {"query":{"bool":{"must":[{"match":{"from":"0xA722A50b3B939aBec992753607B648277f781228"}}]}}}
 ```
 
 Call the function
@@ -78,7 +75,35 @@ esss.queryTxUsingDsl(q)
     console.log("Error");
   });
 ```
-
+The code above will return data like this
+```
+[
+  {
+    "_source": {
+      "TxHash": "0x4f05204efaf701a510bc97c60be65ffad21ea2d2ea813bbd75e9ff384fe64e53", 
+      "blockNumber": 7716238, 
+      "from": "0xDf7D7e053933b5cC24372f878c90E62dADAD5d42", 
+      "gasUsed": 21000, 
+      "timestamp": 1553357074, 
+      "to": "0xA722A50b3B939aBec992753607B648277f781228", 
+      "valueEth": 0.10176, 
+      "valueWei": "101760456245944314"
+    }
+  }, 
+  {
+    "_source": {
+      "TxHash": "0x4828f9af2a975b1bb5a87cd48d089ae46c60931a07270d80fcc65523d966d057", 
+      "blockNumber": 7541072, 
+      "from": "0xDf7D7e053933b5cC24372f878c90E62dADAD5d42", 
+      "gasUsed": 21000, 
+      "timestamp": 1550878929, 
+      "to": "0xA722A50b3B939aBec992753607B648277f781228", 
+      "valueEth": 0.109171, 
+      "valueWei": "109171346049151794"
+    }
+  }
+]
+  ```
 ### Express harvest an ABI
 
 ```javascript
