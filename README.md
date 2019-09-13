@@ -55,6 +55,94 @@ searchEngineProvider.queryUsingDsl(q).then((theResult) => {
 })
 ```
 
+### Query TRANSACTIONS using native Elasticsearch syntax
+
+Fetch transactions which were sent `to` a particular address
+```javascript
+var q = {"query":{"bool":{"must":[{"match":{"to":"0xA722A50b3B939aBec992753607B648277f781228"}}]}}}
+```
+Fetch transactions which were sent `from` a particular address
+```javascript
+var q = {"query":{"bool":{"must":[{"match":{"from":"0xA722A50b3B939aBec992753607B648277f781228"}}]}}}
+```
+
+You can also query using numerical range. Here we look at all transactions send to an address over the last 365 days.
+
+For example, use the following query to get all transactions sent to address `0xA722A50b3B939aBec992753607B648277f781228` between `Fri, 13 Sep 2018 07:51:32 GMT` and `Fri, 13 Sep 2019 07:51:32 GMT`
+
+```
+var now = Math.floor(Date.now() / 1000)
+// 1568361092
+var yesterday =  Math.floor((Date.now() - (365*24*60*60*1000)) / 1000)
+// 1536825092
+var q = {
+  "query": {
+    "bool": {
+      "must": [{
+          "match": {
+            "to": "0xA722A50b3B939aBec992753607B648277f781228"
+          }
+        },
+        {
+          "range": {
+            "timestamp": {
+              "gte": yesterday,
+              "lt": today
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+Call the function
+
+```
+searchEngineProvider.queryTxUsingDsl(q).then((theResult) => {
+    console.log(theResult);
+})
+```
+The code above will return data like this
+```
+[
+  {
+    "_source": {
+      "TxHash": "0x4f05204efaf701a510bc97c60be65ffad21ea2d2ea813bbd75e9ff384fe64e53", 
+      "blockNumber": 7716238, 
+      "from": "0xDf7D7e053933b5cC24372f878c90E62dADAD5d42", 
+      "gasUsed": 21000, 
+      "timestamp": 1553357074, 
+      "to": "0xA722A50b3B939aBec992753607B648277f781228", 
+      "valueEth": 0.10176, 
+      "valueWei": "101760456245944314"
+    }
+  }, 
+  {
+    "_source": {
+      "TxHash": "0x4828f9af2a975b1bb5a87cd48d089ae46c60931a07270d80fcc65523d966d057", 
+      "blockNumber": 7541072, 
+      "from": "0xDf7D7e053933b5cC24372f878c90E62dADAD5d42", 
+      "gasUsed": 21000, 
+      "timestamp": 1550878929, 
+      "to": "0xA722A50b3B939aBec992753607B648277f781228", 
+      "valueEth": 0.109171, 
+      "valueWei": "109171346049151794"
+    }
+  }
+]
+```
+Once the data is returned, the Ethereum timestamp can be easily converted to human readable data (for browser display) like this.
+
+```
+transactionsDate = new Date(1550878929 * 1000).toGMTString()
+```
+The above epoch to date translation will output a value like this
+```
+Sat Feb 23 2019 09:42:09 GMT+1000 (Australian Eastern Standard Time)
+```
+
+
 ### Express harvest an ABI
 
 ```javascript
