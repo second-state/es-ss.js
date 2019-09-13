@@ -37,6 +37,7 @@ class ESSS {
             xhr.open("POST", url, true);
             xhr.send(JSON.stringify(_query));
         });
+    }
     
         queryUsingDsl(_query) {
         var url = this.searchEngineBaseUrl + "/api/es_search";
