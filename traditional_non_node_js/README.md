@@ -146,7 +146,7 @@ The above epoch to date translation will output a value like this
 ```
 Sat Feb 23 2019 09:42:09 GMT+1000 (Australian Eastern Standard Time)
 ```
-### Query search engine server's event logs using native Elasticsearch syntax
+### Query search engine server's Apache2 access logs using native Elasticsearch syntax
 This example lets you fetch all of the search engine requests, during the last 24 hours, which returned a response status code of 200.
 
 ```
