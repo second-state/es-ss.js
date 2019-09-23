@@ -173,7 +173,7 @@ var q = {
 ```
 Call the function like this
 ```
-esss.queryAccessLogsUsingDsl(q)
+searchEngineProvider.queryAccessLogsUsingDsl(q)
 .then(function(result) {
     console.log(result);
   })
@@ -215,7 +215,7 @@ var q = {
 ```
 
 ```
-esss.queryAccessLogsUsingDsl(q)
+searchEngineProvider.queryAccessLogsUsingDsl(q)
     .then(function(result) {
         var uniqueList = []
         var a = JSON.parse(result);
