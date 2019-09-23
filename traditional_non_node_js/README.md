@@ -183,6 +183,55 @@ esss.queryAccessLogsUsingDsl(q)
     console.log("Error");
   });
 ```
+The following example will return the count of unique IP addresses (individual users) who received a success 200 response code during the last 24 hours
+```
+var now = Math.floor(Date.now() / 1000)
+var yesterday = Math.floor((Date.now() - (1 * 24 * 60 * 60 * 1000)) / 1000)
+var q = {
+    "query": {
+        "bool": {
+            "must": [{
+                    "match": {
+                        "responseStatus": "200"
+                    }
+                },
+                {
+                    "range": {
+                        "timestamp": {
+                            "gte": yesterday,
+                            "lt": now
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "aggs": {
+        "by_ip": {
+            "terms": {
+                "field": "callingIP"
+            }
+        }
+    }
+}
+```
+
+```
+esss.queryAccessLogsUsingDsl(q)
+    .then(function(result) {
+        var uniqueList = []
+        var a = JSON.parse(result);
+        for (i = 0; i < a.length; i++) {
+            if (uniqueList.indexOf(a[i]["_source"]["callingIp"]) == -1) {
+                uniqueList.push(a[i]["_source"]["callingIp"])
+            }
+        }
+        console.log("Unique IP Addresses: " + uniqueList.length);
+    })
+    .catch(function() {
+        console.log("Error");
+    });
+```
 
 ### Express harvest an ABI
 
