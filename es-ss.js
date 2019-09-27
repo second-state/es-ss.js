@@ -87,6 +87,26 @@ function ESSS(_searchEngineBaseUrl) {
             });
     }
 
+    this.queryEventUsingDsl = function(_query) {
+        let url = this.getSearchEngineBaseUrl() + "/api/es_event_search";
+        return new Promise(function(resolve, reject) {
+            XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(xhr.responseText);
+                    }
+                } 
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+            xhr.send(JSON.stringify(_query));
+            });
+    }
+
     this.queryAccessLogsUsingDsl = function(_query) {
         let url = this.getSearchEngineBaseUrl() + "/api/es_access_search";
         return new Promise(function(resolve, reject) {

@@ -58,8 +58,28 @@ class ESSS {
             xhr.send(JSON.stringify(_query));
         });
     }
+
+    queryEventUsingDsl(_query) {
+        var url = this.searchEngineBaseUrl + "/api/es_event_search";
+        return new Promise(function(resolve, reject) {
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = function(e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(xhr.responseText);
+                    }
+                }
+            };
+            xhr.onerror = reject;
+            xhr.open("POST", url, true);
+            xhr.send(JSON.stringify(_query));
+        });
+    }
     
-        queryUsingDsl(_query) {
+    queryUsingDsl(_query) {
         var url = this.searchEngineBaseUrl + "/api/es_search";
         return new Promise(function(resolve, reject) {
 
@@ -288,6 +308,7 @@ class ESSS {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
                         var jsonResponse = JSON.parse(xhr.responseText);
+                        //console.log(jsonResponse);
                         var allRecord = JSON.stringify(jsonResponse["hits"]["hits"][0]["_source"]);
                         resolve(allRecord);
                     }
