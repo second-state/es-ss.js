@@ -54,6 +54,201 @@ searchEngineProvider.queryUsingDsl(q).then((theResult) => {
     console.log(theResult);
 })
 ```
+### Query EVENTS using native Elasticsearch syntax
+
+Fetch events which were emitted by a particular smart `contractAddress`
+```javascript
+var q = {"query":{"bool":{"must":[{"match":{"contractAddress":"0xbab9a7803afa2bf76175bbc308340f029b71a585"}}]}}}
+```
+
+You can also query using numerical range. Here we look at all transactions send to an address over the last 24 hours.
+
+```
+var now = Math.floor(Date.now() / 1000)
+var yesterday =  Math.floor((Date.now() - (1*24*60*60*1000)) / 1000)
+var q = {
+  "query": {
+    "bool": {
+      "must": [{
+          "match": {
+            "contractAddress": "0xbab9a7803afa2bf76175bbc308340f029b71a585"
+          }
+        },
+        {
+          "range": {
+            "timestamp": {
+              "gte": yesterday,
+              "lt": now
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+Call the function
+
+```
+searchEngineProvider.queryEventUsingDsl(q).then((theResult) => {
+    console.log(theResult);
+```
+The code above will return data like this
+```
+[{
+        "_source": {
+            "TxHash": "0xd56124d1f0e3b4bbc90ec534fcf50353c2db0d4c1235e157d0faed218b596d12",
+            "blockNumber": 6774071,
+            "contractAddress": "0xbaB9a7803afA2Bf76175BBc308340F029b71a585",
+            "eventLogData": {
+                "0": [{
+                    "sseo5": 333,
+                    "sseo6": 332,
+                    "sseo7": 333
+                }]
+            },
+            "from": "0xd7617c5e4f0aaeb288e622764cf0d34fa5acefe8",
+            "id": "0x5415ac1e",
+            "inputs": [{
+                    "indexed": "True",
+                    "name": "sseo5",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": "True",
+                    "name": "sseo6",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": "False",
+                    "name": "sseo7",
+                    "type": "uint256"
+                }
+            ],
+            "name": "EventThree",
+            "timestamp": 1569638619,
+            "txEventKey": "0xbc39a5d3c55db07ffe43413ed75dcab420acfda61f979a1e9a893aa5016c00e4"
+        }
+    },
+    {
+        "_source": {
+            "TxHash": "0xbef0095d509d2f2f810b217ef26204922901dc06136a4b2022bb1b823ead2ef8",
+            "blockNumber": 6770900,
+            "contractAddress": "0xbaB9a7803afA2Bf76175BBc308340F029b71a585",
+            "eventLogData": {
+                "0": [{
+                    "asdf": 10,
+                    "asdf2": 9
+                }]
+            },
+            "from": "0xd7617c5e4f0aaeb288e622764cf0d34fa5acefe8",
+            "id": "0xdc8fec5c",
+            "inputs": [{
+                    "indexed": "True",
+                    "name": "asdf",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": "True",
+                    "name": "asdf2",
+                    "type": "uint256"
+                }
+            ],
+            "name": "EventOne",
+            "timestamp": 1569635386,
+            "txEventKey": "0xff24d7a98a20fd1e5a7030866264c334a7acf61332b45a3887bfce43137f2914"
+        }
+    },
+    {
+        "_source": {
+            "TxHash": "0x0322253cbefcfda9599f8bd43e3f5d9084ab4b6bf9e21e61898f9ae977761d91",
+            "blockNumber": 6770967,
+            "contractAddress": "0xbaB9a7803afA2Bf76175BBc308340F029b71a585",
+            "eventLogData": {
+                "0": [{
+                    "asdf": 20,
+                    "asdf2": 19
+                }]
+            },
+            "from": "0xd7617c5e4f0aaeb288e622764cf0d34fa5acefe8",
+            "id": "0xdc8fec5c",
+            "inputs": [{
+                    "indexed": "True",
+                    "name": "asdf",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": "True",
+                    "name": "asdf2",
+                    "type": "uint256"
+                }
+            ],
+            "name": "EventOne",
+            "timestamp": 1569635454,
+            "txEventKey": "0x7a9ab94a786ba870204730e7d6c504384429ab76a13d4ff9cbb7ca5943cd715d"
+        }
+    },
+    {
+        "_source": {
+            "TxHash": "0xd56124d1f0e3b4bbc90ec534fcf50353c2db0d4c1235e157d0faed218b596d12",
+            "blockNumber": 6774071,
+            "contractAddress": "0xbaB9a7803afA2Bf76175BBc308340F029b71a585",
+            "eventLogData": {
+                "0": [{
+                    "sseo3": 333,
+                    "sseo4": 332
+                }]
+            },
+            "from": "0xd7617c5e4f0aaeb288e622764cf0d34fa5acefe8",
+            "id": "0x9021d3b7",
+            "inputs": [{
+                    "indexed": "True",
+                    "name": "sseo3",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": "False",
+                    "name": "sseo4",
+                    "type": "uint256"
+                }
+            ],
+            "name": "EventTwo",
+            "timestamp": 1569638619,
+            "txEventKey": "0x1eec7da435469b4405ce9d67f99789a0fbdb1ad5693273b17b9ab329a81559e5"
+        }
+    },
+    {
+        "_source": {
+            "TxHash": "0xec31a3b4b907b94376f1ba36f9a4b190aa834117967cb8ce12b4385f07619950",
+            "blockNumber": 6773641,
+            "contractAddress": "0xbaB9a7803afA2Bf76175BBc308340F029b71a585",
+            "eventLogData": {
+                "0": [{
+                    "sseo1": 99,
+                    "sseo2": 98
+                }]
+            },
+            "from": "0xd7617c5e4f0aaeb288e622764cf0d34fa5acefe8",
+            "id": "0xdc8fec5c",
+            "inputs": [{
+                    "indexed": "True",
+                    "name": "sseo1",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": "True",
+                    "name": "sseo2",
+                    "type": "uint256"
+                }
+            ],
+            "name": "EventOne",
+            "timestamp": 1569638181,
+            "txEventKey": "0xe0aa9f4d38e724319175b41df9a1fe232ca04d73b7737a2356b3594bb29edc5c"
+        }
+    }
+]
+```
+
 
 ### Query TRANSACTIONS using native Elasticsearch syntax
 
