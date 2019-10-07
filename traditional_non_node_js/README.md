@@ -748,7 +748,7 @@ This returns any and all items in the index which contain one or more instances 
 Prepare the list as JSON
 ```javascript
 data = {}
-data["keywords"] = ["cmt", "CyberMiles", "token"]
+data["keywords"] = ["DEVCON5_001"]
 ```
 
 Call the function by passing in the JSON
